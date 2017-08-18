@@ -1,0 +1,77 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# phone 用户发送手机验证码 End Point
+POST    /al/code/send                           controllers.PhoneSMSController.sendSMSCode
+POST    /al/code/check                          controllers.PhoneSMSController.checkSMSCode
+
+# profile 相关功能
+POST    /al/profile/query                       controllers.ProfileController.queryProfile
+POST    /al/profile/search                      controllers.ProfileController.searchProfile
+POST    /al/profile/multi                       controllers.ProfileController.queryMultiProfile
+POST    /al/profile/update                      controllers.ProfileController.updateProfile
+
+# kidnap 用户服务向光功能
+POST    /al/kidnap/push                         controllers.KidnapController.pushService
+POST    /al/kidnap/pop                          controllers.KidnapController.popService
+POST    /al/kidnap/detail                       controllers.KidnapController.detailService
+POST    /al/kidnap/search                       controllers.KidnapController.searchService
+POST    /al/kidnap/multi                        controllers.KidnapController.multiQueryService
+
+# order 相关功能
+POST    /al/order/push                          controllers.OrderController.pushOrder
+POST    /al/order/pop                           controllers.OrderController.popOrder
+POST    /al/order/detail                        controllers.OrderController.detailOrder
+POST    /al/order/search                        controllers.OrderController.searchOrders
+POST    /al/order/multi                         controllers.OrderController.queryMultiOrders
+POST    /al/order/update                        controllers.OrderController.updateOrder
+
+POST    /al/order/accept                        controllers.OrderController.acceptOrder
+POST    /al/order/reject                        controllers.OrderController.rejectOrder
+POST    /al/order/cancel                        controllers.OrderController.cancelOrder
+POST    /al/order/accomplish                    controllers.OrderController.accomplishOrder
+POST    /al/order/paid                          controllers.OrderController.paidOrder
+
+POST    /al/order/prepay                        controllers.OrderController.prepayOrder
+
+POST    /al/order/date/lst                      controllers.OrderController.lstOrdersDateSorted
+
+# auth 用户授权 End Point (详情参考概要设计，@Alfred)
+# 这个是直接登陆，后面去掉不要直接调用
+POST    /al/auth                                controllers.AuthController.authLogin
+POST    /al/auth/code                           controllers.AuthController.authWithPhoneCode
+POST    /al/auth/sns                            controllers.AuthController.authWithSNS
+
+# 文件相关
+POST    /post/uploadFile                        controllers.FopController.uploadFile
+GET     /query/downloadFile/:name               controllers.FopController.downloadFile(name)
+
+# alipay相关
+POST	/alipay/callback						controllers.AlipayController.alipaycallback
+POST	/alipay/redirect						controllers.AlipayController.redirecturi
+
+# time manage 相关
+POST    /al/tm/push                             controllers.TimemanagerController.pushTM
+POST    /al/tm/query                            controllers.TimemanagerController.detailTM
+POST    /al/tm/pop                              controllers.TimemanagerController.popTM
+POST    /al/tm/update                           controllers.TimemanagerController.updateTM
+
+# collection 用户收藏相关
+POST    /al/collections/push                    controllers.CollectionsController.pushCollection
+POST    /al/collections/pop                     controllers.CollectionsController.popCollection
+POST    /al/user/collections                    controllers.CollectionsController.queryUserCollections
+POST    /al/collected/users                     controllers.CollectionsController.queryCollectedUser
+
+POST    /al/user/collected/services             controllers.CollectionsController.queryUserCollectedServices
+
+# 邮件发送相关
+POST    /al/email/privacy                       controllers.emailController.sendEmail
+
+# Dongda严选热门相关
+POST    /al/selected/push                       controllers.SelectedController.pushSelectedService
+POST    /al/selected/pop                        controllers.SelectedController.popSelectedService
+POST    /al/selected/search                     controllers.SelectedController.searchSelectedService
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               			controllers.Assets.at(path="/public", file)
