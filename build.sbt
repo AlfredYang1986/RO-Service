@@ -1,8 +1,8 @@
 import play.sbt.PlayScala
 
 lazy val commonSettings = Seq(
-    organization := "com.blackmirror",
-    version := "2.0",
+    organization := "com.pharbers",
+    version := "1.0",
     scalaVersion := "2.11.8"
 )
 
@@ -22,7 +22,7 @@ lazy val root = (project in file(".")).
     settings(commonSettings: _*).
     settings(
 	    routesGenerator := InjectedRoutesGenerator,
-        name := "dongda-service",
+        name := "RO-service",
         fork in run := true,
         javaOptions += "-Xmx5G"
     ).enablePlugins(PlayScala)

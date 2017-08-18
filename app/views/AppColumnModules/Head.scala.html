@@ -1,4 +1,4 @@
-@(user_name : String, page_type : String)
+@(page_type : String)
 <!-- Highly Modular -->
 <div class="headerbar">
     <a class="menutoggle"><i class="fa fa-bars"></i></a>
@@ -7,11 +7,11 @@
             <li class="pull-right">
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <img src="@routes.Assets.at("images/user.png")" alt="" />@user_name<span class="caret"></span>
+                        <img src="@routes.Assets.at("images/user.png")" alt="" />admin<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-usermenu">
                         <li id="myprofile"><a href="#"><i class="glyphicon glyphicon-user"></i> 我的资料</a></li>
-                        <li><a href="/astellas/login"><i class="glyphicon glyphicon-log-out"></i> 登出</a></li>
+                        <li><a href="/ro/login"><i class="glyphicon glyphicon-log-out"></i> 登出</a></li>
                     </ul>
                 </div>
             </li>

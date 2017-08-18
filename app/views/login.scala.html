@@ -10,16 +10,16 @@
                 <div class="col-md-7">
                     <div class="signin-info">
                         <div class="logopanel">
-                            <h1><span>[</span> PET <span>]</span></h1>
+                            <h1><span>[</span> RO <span>]</span></h1>
                         </div><!-- logopanel -->
                         <div class="mb20"></div>
-                        <h5><strong>Wecome To Promotion Effectiveness Tool!</strong></h5>
+                        <h5><strong>Welcome to resource optimization tool!</strong></h5>
                         <ul>
-                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Budget</li>
-                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Setting</li>
-                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Optimization</li>
-                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Results Report</li>
-                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> More...</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> Evidence based decision</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> Manage the resources</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> Manage the team</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> Maximize outcome</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> More...</li>
                         </ul>
                         <div class="mb20"></div>
                         <strong>没有账号? <a href="#">注册</a></strong>
@@ -49,26 +49,5 @@
 </body>
 }{
 <script src="@routes.Assets.at("js/jquery.gritter.min.js")"></script>
-<script src="@routes.Assets.at("modules/web-im/webim.config.js")"></script>
-<script src="@routes.Assets.at("modules/web-im/strophe-1.2.8.js")"></script>
-<script src="@routes.Assets.at("modules/web-im/websdk-1.4.10.js")"></script>
-<script src="@routes.Assets.at("pet/js/common/pet-load-im.js")"></script>
-<script type="text/javascript">
-        document.onkeydown = function (e) {
-            var theEvent = window.event || e;
-            var code = theEvent.keyCode || theEvent.which;
-            if (code === 13) {
-                $("#sub").click();
-            }
-        };
-
-        $("#sub").click(function(){
-            login();
-        });
-
-        $(function () {
-            clearAllCookie();
-            $.session.clear();
-        })
-</script>
+<script src="@routes.Assets.at("ro/js/ro-login.js")"></script>
 }

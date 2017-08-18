@@ -1,32 +1,11 @@
-@(level : String, page_type : String)
+@(page_type : String)
 <!-- Highly Modular -->
-@if(page_type=="BusinessAnalysis"){
-    @BusinessAnalysisModules.BusinessAnalysisContentPanel()
+@if(page_type=="BusinessIntroduction"){
+    @BusinessIntroductionModules.BusinessIntroductionContentPanel()
 }
-@if(page_type=="BudgetOptimization"){
-    @BudgetOptimizationModules.BudgetOptimizationContentPanel()
+@if(page_type=="ResourceManagement"){
+    @ResourceManagementModules.ResourceManagementContentPanel()
 }
-@if(page_type=="ResultsReport"){
-    @ResultReportModules.ResultsReportContentPanel()
-}
-@if(page_type=="ResultsComparison"){
-    @ResultsComparisonModules.ResultsComparisonContentPanel()
-}
-@if(page_type=="UserManage"){
-    @UserModules.UserManageContentPanel()
-}
-@if(page_type=="CompanyManage"){
-    @CompanyModules.CompanyManageContentPanel()
-}
-@if(page_type=="DepartmentManage"){
-    @DepartmentModules.DepartmentManageContentPanel(level)
-}
-@if(page_type=="ProductManage"){
-    @ProductModules.ProductManageContentPanel(level)
-}
-@if(page_type=="ChannelManage"){
-    @ChannelModules.ChannelManageContentPanel(level)
-}
-@if(page_type=="DataManage"){
-    @DataModules.DataManageContentPanel()
+@if(page_type=="ResourceOptimization"){
+    @ResourceOptimizationModules.ResourceOptimizationContentPanel()
 }

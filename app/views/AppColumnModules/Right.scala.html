@@ -1,9 +1,7 @@
-@(level : String, user_name : String, page_type : String)
+@(page_type : String)
 <!-- Highly Modular -->
 <div class="mainpanel">
-  @AppColumnModules.Head(user_name,page_type)
-  @AppColumnModules.Body(level,page_type)
+  @AppColumnModules.Head(page_type)
+  @AppColumnModules.Body(page_type)
   @AppColumnModules.Tail(page_type)
-
-  @UserModules.MyProfile(user_name)
 </div>

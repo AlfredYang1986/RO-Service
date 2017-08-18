@@ -1,8 +1,0 @@
-@(user_name: String, level: String, page_type: String)
-@main("用户管理") {
-} {
-    <!-- Highly Modular -->
-    @AppColumnModules.App(user_name, level, page_type)
-} {
-    <script src="@routes.Assets.at("pet/pet-user-manage.js")"></script>
-}
