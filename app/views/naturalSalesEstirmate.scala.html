@@ -1,0 +1,252 @@
+@main("自然销量估计") {
+    <!--CSS-->
+    <link rel="stylesheet" href="@routes.Assets.at("css/style.default.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.datatables.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-timepicker.min.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.tagsinput.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/colorpicker.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/dropzone.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/tabs.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/laydate.css")" />
+    <!-- this page css -->
+    <link rel="stylesheet" href="@routes.Assets.at("css/commonFunction/naturalSalesEstirmate.css")" />
+} {
+    <body>
+        <div id="preloader">
+            <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+        </div>
+        <section>
+            <div class="leftpanel">
+                <div class="logopanel">
+                    <h1><span>PET</span></h1>
+                </div>
+                <div class="leftpanelinner">
+                    <h5 class="sidebartitle">导航栏</h5>
+                    <ul class="nav nav-pills nav-stacked nav-bracket">
+                        <li><a href="/astellas/home"><i class="fa fa-home"></i> <span>首页</span></a></li>
+                        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-info-circle"></i> <span>通用</span></a>
+                            <ul class="children nav nav-pills nav-stacked nav-bracket" style="display: block;">
+                                <li class="nav-parent nav-active"><a href=""><i class="fa fa-globe"></i> <span>历史促销评估</span></a>
+                                    <ul class="children" style="display: block;">
+                                        <li class="active"><a href="/common/naturalSalesEstirmate"><i class="fa fa-laptop"></i> 自然销量估计</a></li>
+                                        <li><a href="/common/residualEstirmate"><i class="fa fa-stumbleupon"></i> 残留量估计</a></li>
+                                        <li><a href="/common/uploadData"><i class="fa fa-cloud-upload"></i> 数据上传</a></li>
+                                        <li><a href="/common/estirmateAnalysis"><i class="fa fa-cogs"></i> 评估分析</a></li>
+                                        <li><a href="/common/estirmateReport"><i class="fa fa-bar-chart-o"></i> 评估报告</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent"><a href=""><i class="fa fa-laptop"></i> <span>促销渠道优化</span></a>
+                                    <ul class="children">
+                                        <li><a href="/common/optimizedAnalysis"><i class="fa fa-cogs"></i> 优化分析</a></li>
+                                        <li><a href="/common/optimizedReport"><i class="fa fa-bar-chart-o"></i> 优化报告</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-parent"><a href=""><i class="fa fa-globe"></i> <span>安斯泰来</span></a>
+                            <ul class="children">
+                                <li><a href="/astellas/budgetpage"><i class="fa fa-laptop"></i> 预算页面</a></li>
+                                <li><a href="/astellas/productSettings"><i class="fa fa-stumbleupon"></i> 产品设置</a></li>
+                                <li><a href="/astellas/productOptimization"><i class="fa fa-cloud-upload"></i> 产品优化</a></li>
+                                <li><a href="/astellas/regionOptimization"><i class="fa fa-cogs"></i> 大区优化</a></li>
+                                <li><a href="/astellas/resultsReport"><i class="fa fa-bar-chart-o"></i> 结果报告</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mainpanel">
+                <div class="headerbar">
+                    <a class="menutoggle"><i class="fa fa-bars"></i></a>
+                    <div class="header-Right">
+                        <ul class="headermenu">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <img src="@routes.Assets.at("images/user.png")" alt="" /><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-usermenu pull-Right">
+                                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> 我的资料</a></li>
+                                        <li><a href="/astellas/login"><i class="glyphicon glyphicon-log-out"></i>
+                                            登出</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- end headerbar -->
+
+                <div class="pageheader">
+                    <h2><i class="fa fa-info-circle"></i> 通用 <span>自然销量估计</span></h2>
+                    <div class="breadcrumb-wrapper">
+                        <span class="label">你在这里:</span>
+                        <ol class="breadcrumb">
+                            <li><a href="/astellas/home"></a>通用</li>
+                            <li class="active">自然销量估计</li>
+                        </ol>
+                    </div>
+                </div><!-- end pageheader -->
+
+                <div class="contentpanel">
+                    <div class="row">
+                        <ul id="tabs">
+                            <li><a href="#" name="#tab1">填报</a></li>
+                            <li><a href="#" name="#tab2">列表</a></li>
+                        </ul>
+                        <div id="content">
+                            <div id="tab1">
+                                <form id="basicForm" action=" " class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q1: 产品名称
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input name="productName" id="productName" type="text" title="请输入产品名称" class="form-control mb5 tooltips"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q2: 产品上市时间
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input class="laydate-icon mb5" name="launchDate" id="launchDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q3: 产品属于处方药/非处方药
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="otcFlag" id="otcFlag" class="form-control mb5" required data-placeholder="Choose One">
+                                                <option>处方药</option>
+                                                <option>非处方药</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q4: 产品属于中成药/西药/生物制品
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="category" id="category" class="form-control mb5">
+                                                <option>中成药</option>
+                                                <option>西药</option>
+                                                <option>生物制品</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q5: 产品适应症为治疗慢性病/急性病
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="indication" id="indication" class="form-control mb5">
+                                                <option>慢性病</option>
+                                                <option>急性病</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q6: 产品属于哪个治疗领域(ATC大分类)
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input name="treatmentArea" id="treatmentArea" type="text" placeholder="" title="请输入产品属于哪个治疗领域" data-toggle="tooltip" data-trigger="hover" class="form-control mb5 tooltips" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q7: 产品在生命周期的哪个环节
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="lifeCycle" id="lifeCycle" class="form-control mb5">
+                                                <option>刚上市</option>
+                                                <option>快速发展期</option>
+                                                <option>成熟期</option>
+                                                <option>即将退市期</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q8: 产品所在的细分领域竞争是否激烈
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="competitionLevel" id="competitionLevel" class="form-control mb5">
+                                                <option>高</option>
+                                                <option>中</option>
+                                                <option>低</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Q9: 产品上一年的销售额增长率(百分比%)
+                                        <span class="asterisk">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name="lastYearSalesGrowthRate" id="lastYearSalesGrowthRate" class="form-control mb5">
+                                                <option>-20-0</option>
+                                                <option>0-20</option>
+                                                <option>20-40</option>
+                                                <option>40-60</option>
+                                                <option>60-80</option>
+                                                <option>80-100</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="createDate" id="createDate" value="" />
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-sm-9 col-sm-offset-5">
+                                                <button id="submitBtn" type="button" class="btn btn-success" onclick="pushNaturalSales()">提交</button>
+                                                <button type="reset" class="btn btn-default">重置</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!-- end tab1 -->
+
+                            <div id="tab2">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="table1">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th title="Q1: 产品名称 ">Q1</th>
+                                                    <th title="Q2: 产品上市时间">Q2</th>
+                                                    <th title="Q3: 产品属于处方药/非处方药 ">Q3</th>
+                                                    <th title="Q4: 产品属于中成药/西药/生物制品">Q4</th>
+                                                    <th title="Q5: 产品适应症为治疗慢性病/急性病">Q5</th>
+                                                    <th title="Q6: 产品属于哪个治疗领域（ATC大分类）">Q6</th>
+                                                    <th title="Q7: 产品在生命周期的哪个环节">Q7</th>
+                                                    <th title="Q8: 产品所在的细分领域竞争是否激烈">Q8</th>
+                                                    <th title="Q9: 产品上一年的销售额增长率（百分比%）">Q9</th>
+                                                    <th>创建日期</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbody">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!-- end tab2 -->
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end contentpanel -->
+            </div><!-- end mainpanel -->
+        </section>
+    </body>
+} {
+    <!-- JS -->
+    <script src="@routes.Assets.at("js/jquery.datatables.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery-ui-1.10.3.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.sparkline.min.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.autogrow-textarea.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap-timepicker.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.maskedinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.tagsinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.mousewheel.js")"></script>
+    <script src="@routes.Assets.at("js/select2.min.js")"></script>
+    <script src="@routes.Assets.at("js/dropzone.min.js")"></script>
+    <script src="@routes.Assets.at("js/colorpicker.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.validate.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.hDialog.js")"></script>
+    <script src="@routes.Assets.at("js/laydate.js")"></script>
+
+    <script src="@routes.Assets.at("js/commonFunction/naturalSalesEstirmate.js")"></script>
+}

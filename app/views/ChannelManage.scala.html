@@ -1,0 +1,8 @@
+@(user_name: String, level: String, page_type: String)
+@main("渠道管理") {
+} {
+    <!-- Highly Modular -->
+    @AppColumnModules.App(user_name, level, page_type)
+} {
+    <script src="@routes.Assets.at("pet/pet-channel-manage.js")"></script>
+}

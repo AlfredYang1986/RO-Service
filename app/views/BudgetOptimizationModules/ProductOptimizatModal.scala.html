@@ -1,0 +1,102 @@
+<div id="productoptimization-form" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal_title">编辑</h4>
+            </div>
+            <div class="modal-body">
+                <form id="modal_form" role="form" onclick="changeRatio()">
+                    <div class="row">
+                        <div class="form-group hidden">
+                            <label>产品优化ID</label>
+                            <input id="product_optimizat_pro_opt_id" type="text" class="form-control">
+                            <input id="product_optimizat_channel_name_en" type="text" class="form-control">
+                            <input id="product_optimizat_company" type="text" class="form-control">
+                            <input id="product_optimizat_department" type="text" class="form-control">
+                            <input id="product_optimizat_date" type="text" class="form-control">
+                            <input id="product_optimizat_scope_name_en" type="text" class="form-control"/>
+                            <input id="product_optimizat_now_budget" type="text" class="form-control"/>
+                            <input id="product_optimizat_now_budget_ratio" type="text" class="form-control"/>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>产品名称</label>
+                                <input id="product_optimizat_scope_name_ch" type="text" placeholder="Product Name" readonly class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>渠道名称</label>
+                                <input id="product_optimizat_channel_name_ch" type="text" placeholder="Channel Name" readonly class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>渠道说明</label>
+                                <input id="product_optimizat_channel_description" type="text" readonly class="form-control" placeholder="Channel Description"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>年份</label>
+                                <input id="product_optimizat_year" type="text" readonly class="form-control" placeholder="Year"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>测算预算比例</label>
+                                <div class="input-group mb15">
+                                    <input id="product_optimizat_measured_budget_ratio" onfocus="changeRatio()" type="text" class="form-control" placeholder="Measured Budget Ratio"/>
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>固定预算标准</label>
+                                <input id="product_optimizat_budget_criteria" onfocus="changeRatio()" type="text" class="form-control" placeholder="Budget Criteria"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>测算预算值</label>
+                                <div class="input-group mb15">
+                                    <input id="product_optimizat_calculate_budget_values" type="text" class="form-control" placeholder="Calculate Budget Values"/>
+                                    <span class="input-group-addon">￥</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>测算预算变化幅度</label>
+                                <select id="product_optimizat_budget_variation" class="form-control input-sm mb15">
+                                    <option>0%</option>
+                                    <option>10%</option>
+                                    <option>20%</option>
+                                    <option>30%</option>
+                                    <option>40%</option>
+                                    <option>50%</option>
+                                    <option>60%</option>
+                                    <option>70%</option>
+                                    <option>80%</option>
+                                    <option>90%</option>
+                                    <option>100%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>是否需要优化</label>
+                                <select id="product_optimizat_need_optimization" class="form-control input-sm mb15">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </div>
+                            <div id="income_standards_div" class="form-group col-md-6" hidden>
+                                <label>固定收益标准</label>
+                                <input id="product_optimizat_income_standards" type="text" class="form-control" placeholder="Income Standards"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ProductOptimizatSave()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

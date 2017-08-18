@@ -1,0 +1,74 @@
+@main("登录页面"){
+    <!--loginCss-->
+    <link href="@routes.Assets.at("css/common.css")" rel="stylesheet">
+    <link href="@routes.Assets.at("css/jquery.gritter.css")" rel="stylesheet">
+}{
+<body class="signin">
+    <section>
+        <div class="signinpanel">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="signin-info">
+                        <div class="logopanel">
+                            <h1><span>[</span> PET <span>]</span></h1>
+                        </div><!-- logopanel -->
+                        <div class="mb20"></div>
+                        <h5><strong>Wecome To Promotion Effectiveness Tool!</strong></h5>
+                        <ul>
+                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Budget</li>
+                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Setting</li>
+                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Product Optimization</li>
+                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> Results Report</li>
+                            <li><i class="fa fa-arrow-circle-o-Right mr5"></i> More...</li>
+                        </ul>
+                        <div class="mb20"></div>
+                        <strong>没有账号? <a href="#">注册</a></strong>
+                    </div><!-- signin0-info -->
+                </div><!-- col-sm-7 -->
+                <div class="col-md-5">
+                    <form id="basicForm" method="" action="">
+                        <h4 class="nomargin">登录</h4>
+                        <p class="mt5 mb20">登录以访问您的帐户.</p>
+                        <input id="name" type="text" class="form-control uname" placeholder="账号"/>
+                        <input id="password" type="password" class="form-control pword" placeholder="密码"/>
+                        <a href="#"><small>忘记密码?</small></a>
+                        <button id="sub" type="button" class="btn btn-success btn-block">登录</button>
+                    </form>
+                </div><!-- col-sm-5 -->
+            </div><!-- row -->
+            <div class="signup-footer">
+                <div class="pull-left">
+                            &copy; 2017 Pharbers. 版权所有。
+                </div>
+                <div class="pull-Right">
+                    Created By: <a href="http://www.pharbers.com/" target="_blank">Pharbers</a>
+                </div>
+            </div>
+        </div><!-- signin -->
+    </section>
+</body>
+}{
+<script src="@routes.Assets.at("js/jquery.gritter.min.js")"></script>
+<script src="@routes.Assets.at("modules/web-im/webim.config.js")"></script>
+<script src="@routes.Assets.at("modules/web-im/strophe-1.2.8.js")"></script>
+<script src="@routes.Assets.at("modules/web-im/websdk-1.4.10.js")"></script>
+<script src="@routes.Assets.at("pet/js/common/pet-load-im.js")"></script>
+<script type="text/javascript">
+        document.onkeydown = function (e) {
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which;
+            if (code === 13) {
+                $("#sub").click();
+            }
+        };
+
+        $("#sub").click(function(){
+            login();
+        });
+
+        $(function () {
+            clearAllCookie();
+            $.session.clear();
+        })
+</script>
+}

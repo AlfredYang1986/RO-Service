@@ -1,0 +1,11 @@
+@(user_name : String, level : String, page_type : String)
+<!-- Highly Modular -->
+<body>
+    <div id="preloader">
+        <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+    </div>
+    <section>
+        @AppColumnModules.Left(level, page_type)
+        @AppColumnModules.Right(level, user_name,page_type)
+    </section>
+</body>

@@ -1,0 +1,40 @@
+<div class="pageheader">
+  <h2><i class="fa fa-bar-chart-o"></i> 优化预测 <span>结果报告</span></h2>
+  <div class="breadcrumb-wrapper">
+    <span class="label">你在这里:</span>
+    <ol class="breadcrumb">
+      <li><a href="/astellas/businessAnalysis"></a>优化预测</li>
+      <li class="active">结果报告</li>
+    </ol>
+  </div>
+</div>
+<div class="contentpanel">
+  <div id="content1" class="row">
+    <div class="ibox-content">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <div class="panel-btns">
+                <a href="" class="panel-close">&times;</a>
+                <a href="" class="minimize">&minus;</a>
+              </div>
+              <h3 class="panel-title">结果报告</h3>
+            </div>
+            @ResultReportModules.BudgetOptimizationForm()
+            @ResultReportModules.RevenueOptimizationForm()
+            @ResultReportModules.ProfitOptimizationForm()
+            <div class="panel-body">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table id="table2" class="table table-success mb30"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @CommonModules.LoadingModal()
+</div>

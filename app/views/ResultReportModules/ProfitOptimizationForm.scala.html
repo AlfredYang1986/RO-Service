@@ -1,0 +1,53 @@
+<div id="form3" class="panel-body">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label class="col-sm-6 control-label text-right">产品筛选:</label>
+        <div class="col-sm-6">
+          <select id='profit_productOpt' onchange='querylist()' class='form-control input-sm mb15'></select>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label class="col-sm-6 control-label text-right">成本花费:</label>
+        <div class="col-sm-6">
+          <label id="profit_current_cost_prod" class="col-sm-4 control-label text-right"></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label class="col-sm-6 control-label text-right">当前利润:</label>
+        <div class="col-sm-6">
+          <label id="profit_current_profit" class="col-sm-4 control-label text-right"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label class="col-sm-6 control-label text-right">优化利润:</label>
+        <div class="col-sm-6">
+          <label id="profit_max_profit" class="col-sm-4 control-label text-right"></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label class="col-sm-6 control-label text-right">利润增长水平:</label>
+        <div class="col-sm-6">
+          <label id="profit_profit_uplift_prod" class="col-sm-4 control-label text-right"></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <div class="col-sm-12 text-right">
+          <button onclick='generateReport()' type='button' class='btn btn-primary btn-sm'>生成报告</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

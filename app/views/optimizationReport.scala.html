@@ -1,0 +1,228 @@
+@main("优化报告") {
+    <!--CSS-->
+    <link rel="stylesheet" href="@routes.Assets.at("css/style.default.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.datatables.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-timepicker.min.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.tagsinput.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/colorpicker.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/dropzone.css")" />
+    <!-- this page css -->
+    <link rel="stylesheet" href="@routes.Assets.at("css/commonFunction/optimizationReport.css")" />
+} {
+    <body>
+        <div id="preloader">
+            <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+        </div>
+        <section>
+            <div class="leftpanel">
+                <div class="logopanel">
+                    <h1><span>PET</span></h1>
+                </div>
+                <div class="leftpanelinner">
+                    <h5 class="sidebartitle">导航栏</h5>
+                    <ul class="nav nav-pills nav-stacked nav-bracket">
+                        <li><a href="/astellas/home"><i class="fa fa-home"></i> <span>首页</span></a></li>
+                        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-info-circle"></i> <span>通用</span></a>
+                            <ul class="children nav nav-pills nav-stacked nav-bracket" style="display: block;">
+                                <li class="nav-parent"><a href=""><i class="fa fa-globe"></i> <span>历史促销评估</span></a>
+                                    <ul class="children">
+                                        <li><a href="/common/naturalSalesEstirmate"><i class="fa fa-laptop"></i> 自然销量估计</a></li>
+                                        <li><a href="/common/residualEstirmate"><i class="fa fa-stumbleupon"></i> 残留量估计</a></li>
+                                        <li><a href="/common/uploadData"><i class="fa fa-cloud-upload"></i> 数据上传</a></li>
+                                        <li><a href="/common/estirmateAnalysis"><i class="fa fa-cogs"></i> 评估分析</a></li>
+                                        <li><a href="/common/estirmateReport"><i class="fa fa-bar-chart-o"></i> 评估报告</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent nav-active"><a href=""><i class="fa fa-laptop"></i> <span>促销渠道优化</span></a>
+                                    <ul class="children" style="display: block;">
+                                        <li><a href="/common/optimizedAnalysis"><i class="fa fa-cogs"></i> 优化分析</a></li>
+                                        <li class="active"><a href="/common/optimizedReport"><i class="fa fa-bar-chart-o"></i> 优化报告</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-parent"><a href=""><i class="fa fa-globe"></i> <span>安斯泰来</span></a>
+                            <ul class="children">
+                                <li><a href="/astellas/budgetpage"><i class="fa fa-laptop"></i> 预算页面</a></li>
+                                <li><a href="/astellas/productSettings"><i class="fa fa-stumbleupon"></i> 产品设置</a></li>
+                                <li><a href="/astellas/productOptimization"><i class="fa fa-cloud-upload"></i> 产品优化</a></li>
+                                <li><a href="/astellas/regionOptimization"><i class="fa fa-cogs"></i> 大区优化</a></li>
+                                <li><a href="/astellas/resultsReport"><i class="fa fa-bar-chart-o"></i> 结果报告</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mainpanel">
+                <div class="headerbar">
+                    <a class="menutoggle"><i class="fa fa-bars"></i></a>
+                    <div class="header-Right">
+                        <ul class="headermenu">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <img src="@routes.Assets.at("images/user.png")" alt="" /><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-usermenu pull-Right">
+                                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> 我的资料</a></li>
+                                        <li><a href="/astellas/login"><i class="glyphicon glyphicon-log-out"></i>
+                                            登出</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- end headerbar -->
+
+                <div class="pageheader">
+                    <h2><i class="fa fa-info-circle"></i> 通用 <span>优化报告</span></h2>
+                    <div class="breadcrumb-wrapper">
+                        <span class="label">你在这里:</span>
+                        <ol class="breadcrumb">
+                            <li><a href="/astellas/home"></a>通用</li>
+                            <li class="active">优化报告</li>
+                        </ol>
+                    </div>
+                </div><!-- end pageheader -->
+
+                <div id="worddiv" class="contentpanel">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'>
+                                            <span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt;' >
+                                            <span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>
+                                                <img class="img-responsive center-block" src="@routes.Assets.at("images/home.png")" alt="" />
+                                            </span>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><b><span lang=EN-US style='font-size: 18.0pt; font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+
+                                        <br clear=ALL>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>产品</span></b>
+                                            <b><span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="productName"></span></b>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>现有营销手段优化报告</span></b>
+                                        </p>
+
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>作者：</span></b>
+                                            <b><span style='font-family: 幼圆; color: red' id="userName"></span></b>
+                                        </p>
+
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="createDate"></span></b>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+
+                                        <p style='margin:0cm;margin-bottom:.0001pt'><b>
+                                            <span style='font-family:幼圆; color:black'>市场优化推荐</span></b><b>
+                                            <span lang=EN-US style='font-family:"verdena","serif"; color:black'> Optimization Recommendation</span></b><b>
+                                            <span style='font-family: 幼圆;color:black'>：</span></b>
+                                        </p>
+                                        <p style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US style='font-family: "verdena","serif";color:black'>&nbsp;</span></p>
+                                        <p style='margin:0cm;margin-bottom:.0001pt'><span style='font-family:幼圆; color:black'>法伯科技根据企业数据以及目前各个渠道现状，结合优化组合的经验如下：</span></p>
+
+                                        <!-- Echarts 图-1 -->
+                                        <div id="scatter" style="height:400px;"></div>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <p class=MsoNormal><span style='font-family:幼圆; color:black'>优化建议：</span></p>
+                                        <p class=MsoNormal><span lang=EN-US style='font-family:"verdena","serif"'>&nbsp;</span></p>
+                                        <span style='font-family:幼圆; color:black'>我们根据企业目前的情况，在以目标为<span style='color:red' id="optimizationType"></span> 的情况下对各个渠道的投入进行了重新分配。
+                                        <span style='color:red' id="uplift"></span>。</span>
+
+                                        <!-- 表格1 -->
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr style='height: 9.15pt'>
+                                                    <td width=134 rowspan=2 style='width: 100.4pt; border: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 9.15pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>渠道</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=272 colspan=2 style='width: 203.7pt; border-top: solid #002060 1.0pt; border-left: none; border-bottom: solid white 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 9.15pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>现状</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=272 colspan=2 style='width: 203.7pt; border-top: solid #002060 1.0pt; border-left: none; border-bottom: solid white 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 9.15pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>优化</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height: 14.9pt'>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>花费(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>销量贡献(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>花费(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>销量贡献(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+                                                <tbody id="tbody">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- row -->
+                                </div><!-- panel-body -->
+                            </div><!-- panel -->
+                        </div><!-- col-sm-9 -->
+                    </div>
+                </div>
+            </div><!-- end mainpanel -->
+        </section>
+    </body>
+} {
+    <!-- JS -->
+    <script src="@routes.Assets.at("js/jquery.datatables.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery-ui-1.10.3.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.sparkline.min.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.autogrow-textarea.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap-timepicker.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.maskedinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.tagsinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.mousewheel.js")"></script>
+    <script src="@routes.Assets.at("js/select2.min.js")"></script>
+    <script src="@routes.Assets.at("js/dropzone.min.js")"></script>
+    <script src="@routes.Assets.at("js/colorpicker.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.validate.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.hDialog.js")"></script>
+
+        <!-- 引入 ECharts 文件 -->
+    <script src="@routes.Assets.at("js/eachars3.0/echarts.min.js")"></script>
+    <script src="@routes.Assets.at("js/eachars3.0/map/china.js")"></script>
+    <script src="@routes.Assets.at("js/eachars3.0/config.js")"></script>
+
+    <script src="@routes.Assets.at("js/commonFunction/optimizationReport.js")"></script>
+}

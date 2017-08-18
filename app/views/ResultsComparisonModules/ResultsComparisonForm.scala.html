@@ -1,0 +1,29 @@
+<div class="panel-body">
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-sm-4 control-label text-right">产品筛选:</label>
+      <div class="col-sm-8">
+        <select id='form_productOpt' onchange='querylist()' class='form-control input-sm mb15'></select>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-sm-4 control-label text-right">批次:</label>
+      <div class="col-sm-8">
+        <select id='form_times' onchange='querylist()'  class='form-control input-sm mb15'></select>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 text-right">
+    <div class="btn-group">
+      <button data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle" type="button">
+        <i class="fa fa-arrow-circle-o-down mr5"></i> 导出
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#" onclick="exportFile()">Csv</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

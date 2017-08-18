@@ -1,0 +1,612 @@
+@main("评估报告") {
+    <!--CSS-->
+    <link rel="stylesheet" href="@routes.Assets.at("css/style.default.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.datatables.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-timepicker.min.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/jquery.tagsinput.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/colorpicker.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("css/dropzone.css")" />
+    <!-- this page css -->
+    <link rel="stylesheet" href="@routes.Assets.at("css/commonFunction/estirmateReport.css")" />
+} {
+    <body>
+        <div id="preloader">
+            <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+        </div>
+        <section>
+            <div class="leftpanel">
+                <div class="logopanel">
+                    <h1><span>PET</span></h1>
+                </div>
+                <div class="leftpanelinner">
+                    <h5 class="sidebartitle">导航栏</h5>
+                    <ul class="nav nav-pills nav-stacked nav-bracket">
+                        <li><a href="/astellas/home"><i class="fa fa-home"></i> <span>首页</span></a></li>
+                        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-info-circle"></i> <span>通用</span></a>
+                            <ul class="children nav nav-pills nav-stacked nav-bracket" style="display: block;">
+                                <li class="nav-parent nav-active"><a href=""><i class="fa fa-globe"></i> <span>历史促销评估</span></a>
+                                    <ul class="children" style="display: block;">
+                                        <li><a href="/common/naturalSalesEstirmate"><i class="fa fa-laptop"></i> 自然销量估计</a></li>
+                                        <li><a href="/common/residualEstirmate"><i class="fa fa-stumbleupon"></i> 残留量估计</a></li>
+                                        <li><a href="/common/uploadData"><i class="fa fa-cloud-upload"></i> 数据上传</a></li>
+                                        <li><a href="/common/estirmateAnalysis"><i class="fa fa-cogs"></i> 评估分析</a></li>
+                                        <li class="active"><a href="/common/estirmateReport"><i class="fa fa-bar-chart-o"></i> 评估报告</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent"><a href=""><i class="fa fa-laptop"></i> <span>促销渠道优化</span></a>
+                                    <ul class="children">
+                                        <li><a href="/common/optimizedAnalysis"><i class="fa fa-cogs"></i> 优化分析</a></li>
+                                        <li><a href="/common/optimizedReport"><i class="fa fa-bar-chart-o"></i> 优化报告</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-parent"><a href=""><i class="fa fa-globe"></i> <span>安斯泰来</span></a>
+                            <ul class="children">
+                                <li><a href="/astellas/budgetpage"><i class="fa fa-laptop"></i> 预算页面</a></li>
+                                <li><a href="/astellas/productSettings"><i class="fa fa-stumbleupon"></i> 产品设置</a></li>
+                                <li><a href="/astellas/productOptimization"><i class="fa fa-cloud-upload"></i> 产品优化</a></li>
+                                <li><a href="/astellas/regionOptimization"><i class="fa fa-cogs"></i> 大区优化</a></li>
+                                <li><a href="/astellas/resultsReport"><i class="fa fa-bar-chart-o"></i> 结果报告</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mainpanel">
+                <div class="headerbar">
+                    <a class="menutoggle"><i class="fa fa-bars"></i></a>
+                    <div class="header-Right">
+                        <ul class="headermenu">
+                            <li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <img src="@routes.Assets.at("images/user.png")" alt="" /><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-usermenu pull-Right">
+                                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> 我的资料</a></li>
+                                        <li><a href="/astellas/login"><i class="glyphicon glyphicon-log-out"></i>
+                                            登出</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- end headerbar -->
+
+                <div class="pageheader">
+                    <h2><i class="fa fa-info-circle"></i> 通用 <span>评估报告</span></h2>
+                    <div class="breadcrumb-wrapper">
+                        <span class="label">你在这里:</span>
+                        <ol class="breadcrumb">
+                            <li><a href="/astellas/home"></a>通用</li>
+                            <li class="active">评估报告</li>
+                        </ol>
+                    </div>
+                </div><!-- end pageheader -->
+
+                <!-- headerbar -->
+                <div id="contentpanel" class="contentpanel">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'>
+                                            <span lang=EN-US
+                                            style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt;' >
+                                            <span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>
+                                                <img class="img-responsive center-block" src="@routes.Assets.at("images/home.png")" alt="" />
+                                            </span>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><b><span lang=EN-US style='font-size: 18.0pt; font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+
+                                        <br clear=ALL>
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>产品</span></b>
+                                            <b><span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="product_name"></span></b>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>现有营销手段评估报告</span></b>
+                                        </p>
+
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span style='font-family: 幼圆; color: #44546A'>作者：</span></b>
+                                            <b><span style='font-family: 幼圆; color: red' id="user_name"></span></b>
+                                        </p>
+
+                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center'>
+                                            <b><span lang=EN-US
+                                            style='font-family: "verdena", "serif"; color: red' id="create_date"></span></b>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><b><span lang=EN-US style='font-family: "verdena", "serif"; color: #44546A'>&nbsp;</span></b></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'><br clear=all style='page-break-before: always'></span>
+                                        <p class=MsoNormal><span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+
+                                        <p class=MsoNormal style='vertical-align: middle;'>
+                                            <span style='font-family: 幼圆; color: black'>背景：测试产品为上市</span>
+                                            <span style='font-family: 幼圆; color: red' id="productFewYears"></span>
+                                            <span style='font-family: 幼圆; color: black'>年的</span>
+                                            <span style='font-family: 幼圆; color: red' id="productMatureStage"></span>
+                                            <span style='font-family: 幼圆; color: red' id="otcFlag"></span>
+                                            <span style='font-family: 幼圆; color: red' id="classification"></span>
+                                            <span style='font-family: 幼圆; color: black'>产品，主要针对</span>
+                                            <span style='font-family: 幼圆; color: red' id="ta"></span>
+                                            <span style='font-family: 幼圆; color: black'>领域。该产品所属细分领域的竞争</span>
+                                            <span style='font-family: 幼圆; color: red' id="competition"></span>
+                                            <span style='font-family: 幼圆; color: black'>。该产品在</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="startyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年销售金额约为</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="totalSales"></span>
+                                            <span style='font-family: 幼圆; color: red'>亿元</span>
+                                            <span style='font-family: 幼圆; color: black'>人民币，</span>
+
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年销售额增长</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="salesGrowth"></span>
+                                            <span style='font-family: 幼圆; color: black'>，达到</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="totalSalesAdj"></span>
+                                            <span style='font-family: 幼圆; color: red'>亿元</span>
+                                            <span style='font-family: 幼圆; color: black'>。根据其他类似产品的经验，该产品的销量自然残留率（Carry Over Rate）约为</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="carryOverRange"></span>
+                                            <span style='font-family: 幼圆; color: black'>。该产品目前主要的营销方式包括：</span>
+                                        </p>
+
+                                        <p class=MsoNormal style='vertical-align: middle'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                        </p>
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr style='height: 9.15pt'>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center  style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>渠道</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tbody id="channel_table">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <ul>
+                                            <li>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>而根据过去不同渠道的费用组成，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName1"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>占据了主要的部分，约占总费用的</span>
+                                                <span style='font-family: "verdena", "serif"; color: red; font-size: 12pt;' lang=EN-US id="channelName1Cost"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>，其次为</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName2"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>占</span>
+                                                <span style='font-family: "verdena", "serif"; color: red; font-size: 12pt;' lang=EN-US id="channelName2Cost"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName3"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>占</span>
+                                                <span style='font-family: "verdena", "serif"; color: red; font-size: 12pt;' lang=EN-US id="channelName3Cost"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>，剩下的营销方式占总费用的不到</span>
+                                                <span style='font-family: "verdena", "serif"; color: red; font-size: 12pt;' lang=EN-US id="channelNameOther"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>。（各渠道的财务投入明细请参看下方饼图）</span>
+                                            </li>
+
+                                            <p class=MsoNormal style='vertical-align: middle'>
+                                                <span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                            </p>
+
+                                            <li>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>在非拜访的渠道中，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName2"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>与</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName3"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>是相对最重要的主要推广手段。目前</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName2"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>属于</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName2investPercentage"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等投入</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName2roi"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等回报的状态，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName3"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>属于</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName3investPercentage"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等投入</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName3roi"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等回报的状态。由于同类的竞争产品也在用类似的手段推广，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName2"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>活动的质量以及信息的传达率与影响程度属于</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName2gainRate"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等水平，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName3"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>活动的质量以及信息的传达率与影响程度属于</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName3gainRate"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>等水平。根据经验判断</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName2"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>可能对目标客户的影响力随时间的推移衰退的</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName2finalRetention"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>，</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' name="channelName3"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>可能对目标客户的影响力随时间的推移衰退的</span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: red' id="channelName3finalRetention"></span>
+                                                <span style='font-family: 幼圆; font-size: 12pt; color: black'>。</span>
+                                            </li>
+                                        </ul>
+
+                                        <p class=MsoNormal style='vertical-align: middle'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                        </p>
+
+                                        <!-- Echarts 图-1 -->
+                                        <div id="pie" style="height:400px;"></div>
+
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><b><span style='font-family: 幼圆; color: black'>现有营销手段有效性测评：</span></b></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'><span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span></p>
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'>
+                                            <span style='font-family: 幼圆; color: black'>法伯科技根据企业内部数据，结合类似产品的经验，量化验证企业渠道营销方面的几个重要的假设。通过大量的数据模型的验证案例产品如下：</span>
+                                        </p>
+
+                                        <p class=MsoNormal style='text-indent: 48.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: -18.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black;'>1.</span>
+                                            <span style='font-family: 幼圆; color: black;'>销量自然残留率：</span>
+                                        </p>
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0pt'>
+                                            <span style='font-family: 幼圆; color: black'>在</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年，该产品的</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black'>Carry Over Rate </span>
+                                            <span style='font-family: 幼圆; color: black'>销量自然残留率为</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="carryOver"></span>
+                                            <span style='font-family: 幼圆; color: black'>，</span>
+                                            <span style='font-family: "verdena", "serif"; color: black'> </span>
+                                            <span style='font-family: 幼圆; color: black'>即如果在</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="startyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年年底所有的营销活动停止的情况下，该产品会在</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年顺延将产生约</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="total_sales_adj_carry_over"></span>
+                                            <span style='font-family: 幼圆; color: black'>亿元的销量（约</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="carryOver"></span>
+                                            <span style='font-family: 幼圆; color: black'>的</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="startyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年该产品的全年销量将会自然流动到</span>
+                                            <span lang=EN-US
+                                            style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年）；</span>
+                                        </p>
+
+
+
+                                        <p class=MsoNormal style='text-indent: 48.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: -18.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black;'>2.</span>
+                                            <span style='font-family: 幼圆; color: black;'>不同渠道对销售结果的贡献度：</span>
+                                        </p>
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0pt'>
+                                            <span style='font-family: 幼圆; color: black'>通过分析产品</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="product_name"></span>
+                                                <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="month"></span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red'>个月</span>
+                                            <span style='font-family: 幼圆; color: black'>的连续性销售以及各渠道投入的数据，并考虑到</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年的各种营销手段以及市场重要趋势和季节性等因素，模型结果的拟合度为</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="rSqure"></span>
+                                            <span style='font-family: 幼圆; color: black'>。充分验证了企业内部的经验值。各种营销渠道为</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: black'>年的销售贡献了约</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="carry_overtotalsalesadj"></span>
+                                            <span style='font-family: 幼圆; color: black'>亿元人民币（</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="carryOver1"></span>
+                                            <span style='font-family: 幼圆; color: black'>的年销售额）。其中，</span>
+                                            <span style='font-family: 幼圆; color: red' name="channelName1"></span>
+                                            <span style='font-family: 幼圆; color: black'>贡献度最高，约贡献</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="endyear"></span>
+                                            <span style='font-family: 幼圆; color: red'>年</span>
+                                            <span style='font-family: 幼圆; color: black'>销售额的</span>
+                                            <span lang=EN-US  style='font-family: "verdena", "serif"; color: red' id="channelName71Contribution"></span>
+                                            <span style='font-family: 幼圆; color: black'>，其次为</span>
+                                            <span style='font-family: 幼圆; color: red' id="channelName72"></span>
+                                            <span style='font-family: 幼圆; color: black'>的</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="channelName72Contribution"></span>
+                                            <span style='font-family: 幼圆; color: black'>，其他渠道的贡献度总和不到</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="channelName7ContributionOther"></span>
+                                            <span style='font-family: 幼圆; color: black'>。每个渠道对于销售结果的贡献度具体数据值如下：</span>
+                                        </p>
+
+                                        <p style='margin: 0cm; margin-bottom: .0001pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black'>&nbsp;</span>
+                                        </p>
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr style='height: 9.15pt'>
+                                                    <td width=134 rowspan=2 style='width: 100.4pt; border: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 9.15pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>渠道</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=272 colspan=2 style='width: 203.7pt; border-top: solid #002060 1.0pt; border-left: none; border-bottom: solid white 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 9.15pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span lang=EN-US style='font-size: 10.5pt; font-family: "verdena", "serif"; color: white'>${entity.endyear }</span></b>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>年现状</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height: 14.9pt'>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>花费(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>销量贡献(%)</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tbody id="contribution_table">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                            <!-- Echarts 图-2 -->
+                                        <div id="line1" style="height:400px;"></div>
+
+                                        <p class=MsoNormal style='text-indent: 48.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: -18.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black;'>3.</span>
+                                            <span style='font-family: 幼圆; color: black;'>营销手段对于销量影响的留存率</span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0pt'>
+                                            <span style='font-family: 幼圆; color: black;'>同时，数据验证后显示，过去两年的活动对目标客户的影响力的残存率最高的是
+                                                <span style='font-family: 幼圆; color: red' name="channelName81"></span>，月度留存率为
+                                            </span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="finalRetention81"></span>
+                                            <span style='font-family: 幼圆; color: black;'>，即客户对拜访活动内容的记忆在第二个月约剩下</span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="finalRetention81"></span>
+                                            <span style='font-family: 幼圆; color: black;'>。
+                                                <span style='font-family: 幼圆; color: red' name="channelName82"></span>的月度留存率
+                                            </span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="finalRetention82"></span>
+                                            <span style='font-family: 幼圆; color: black;'>，
+                                                <span style='font-family: 幼圆; color: red' name="channelName83"></span>为
+                                            </span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' name="finalRetention83"></span>
+                                            <span style='font-family: 幼圆; color: black;'>，其余活动的月度留存率都不高于</span>
+                                            <span lang=EN-US
+                                            style='font-family: "verdena", "serif"; color: red' name="finalRetention83"></span>
+                                            <span style='font-family: 幼圆; color: black;'>。
+                                                <span style='font-family: 幼圆; color: red' name="channelName81"></span>的质量相对高，对客户的影响大。可以留存超过
+                                            </span>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: red' id="month81"></span>
+                                            <span style='font-family: 幼圆; color: black;'>个月。
+                                                <span style='font-family: 幼圆; color: red' name="channelName82"></span>的质量和效果均为中等水平。对客户的影响在
+                                                <span style='font-family: 幼圆; color: red ' id="month82"></span>个月后会消退。其他渠道的效果基本紧停留在
+                                                <span style='font-family: 幼圆; color: red'>当月</span>。相对为短期效果，叠加的增强营销能力不强。
+                                            </span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0cm'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                            <!-- Echarts 图-3 -->
+                                        <div id="line2" style="height:400px;"></div>
+
+                                        <p class=MsoNormal style='text-indent: 48.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: -21.0pt'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"; color: black;'>4.</span>
+                                            <span style='font-family: 幼圆; color: black;'>投资回报率(ROI)</span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: -3.0pt'>
+                                            <span style='font-family: 幼圆; color: black;'>从投资回报的角度分析</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>结果显示：</span>
+                                        </p>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0cm'>
+                                            <span style='font-family: "verdena", "serif"' lang=EN-US>&nbsp;</span>
+                                        </p>
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tr style='height: 9.15pt'>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>渠道</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td width=136 style='width: 101.85pt; border-top: none; border-left: none; border-bottom: solid #002060 1.0pt; border-Right: solid white 1.0pt; background: #002060; padding: 3.6pt 3.6pt 3.6pt 3.6pt; height: 14.9pt'>
+                                                        <p align=center style='margin: 0cm; margin-bottom: .0001pt; text-align: center; vertical-align: top'>
+                                                            <b><span style='font-size: 10.5pt; font-family: 幼圆; color: white'>ROI</span></b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+                                                <tbody id="roi_table">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- Echarts 图-4 -->
+                                        <div id="bar" style="height:400px;"></div>
+
+                                        <p class=MsoListParagraph style='margin-left: 21.0pt; text-indent: 0cm'>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+                                        <p class=MsoNormal>
+                                            <span style='font-family: 幼圆; color: black;'>重要渠道的投入产出的现状有所差异:</span>
+                                        </p>
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <!-- Echarts 图-5 -->
+                                        <div id="logarithm1" style="height:400px;"></div>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span></p>
+                                        <p class=MsoNormal>
+                                            <span style='font-family: 幼圆; color: red' id="channelName91"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>为</span>
+                                            <span style='font-family: "verdena", "serif"; color: red' lang=EN-US id="roi91"></span>
+                                            <span style='font-family: 幼圆; color: red'>元</span>
+                                            <span style='font-family: 幼圆; color: black;'>，目前</span>
+                                            <span style='font-family: 幼圆; color: black;'>的边际</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>处于</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi911"></span>。
+                                            <span style='font-family: 幼圆; color: black;'>持续投入会带来</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi912"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>回报，</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi913"></span>。
+                                        </p>
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <!-- Echarts 图-6 -->
+                                        <div id="logarithm2" style="height:400px;"></div>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span></p>
+                                        <p class=MsoNormal>
+                                            <span style='font-family: 幼圆; color: red' id="channelName101"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>为</span>
+                                            <span style='font-family: "verdena", "serif"; color: red' lang=EN-US id="roi101"></span>
+                                            <span style='font-family: 幼圆; color: red'>元</span>
+                                            <span style='font-family: 幼圆; color: black;'>，目前</span>
+                                            <span style='font-family: 幼圆; color: black;'>的边际</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>处于</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1011"></span>。
+                                            <span style='font-family: 幼圆; color: black;'>持续投入会带来</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1012"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>回报，</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1013"></span>。
+                                        </p>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <!-- Echarts 图-7 -->
+                                        <div id="logarithm3" style="height:400px;"></div>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <p class=MsoNormal>
+                                            <span style='font-family: 幼圆; color: red' id="channelName111"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>为</span>
+                                            <span style='font-family: "verdena", "serif"; color: red' lang=EN-US id="roi111"></span>
+                                            <span style='font-family: 幼圆; color: red'>元</span>
+                                            <span style='font-family: 幼圆; color: black;'>，目前</span>
+                                            <span style='font-family: 幼圆; color: black;'>的边际</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>处于</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1111"></span>。
+                                            <span style='font-family: 幼圆; color: black;'>持续投入会带来</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1112"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>回报，</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1113"></span>。
+                                        </p>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+
+                                        <!-- Echarts 图-8 -->
+                                        <div id="logarithm4" style="height:400px;"></div>
+
+                                        <p class=MsoNormal>
+                                            <span lang=EN-US style='font-family: "verdena", "serif"'>&nbsp;</span>
+                                        </p>
+                                        <p class=MsoNormal>
+                                            <span style='font-family: 幼圆; color: red' id="channelName121"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>为</span>
+                                            <span style='font-family: "verdena", "serif"; color: red' lang=EN-US id="roi121"></span>
+                                            <span style='font-family: 幼圆; color: red'>元</span>
+                                            <span style='font-family: 幼圆; color: black;'>，目前</span>
+                                            <span style='font-family: 幼圆; color: black;'>的边际</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>处于</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1211"></span>。
+                                            <span style='font-family: 幼圆; color: black;'>持续投入会带来</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1212"></span>
+                                            <span style='font-family: 幼圆; color: black;'>的</span>
+                                            <span style='font-family: "verdena", "serif"; color: black;' lang=EN-US>ROI</span>
+                                            <span style='font-family: 幼圆; color: black;'>回报，</span>
+                                            <span style='font-family: 幼圆; color: red' id="mroi1213"></span>。
+                                        </p>
+                                    </div><!-- row -->
+                                </div><!-- panel-body -->
+                            </div><!-- end .panel -->
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end #contentpanel .contentpanel -->
+            </div><!-- end mainpanel -->
+        </section>
+    </body>
+} {
+    <!-- JS -->
+    <script src="@routes.Assets.at("js/jquery.datatables.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery-ui-1.10.3.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.sparkline.min.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.autogrow-textarea.js")"></script>
+    <script src="@routes.Assets.at("js/bootstrap-timepicker.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.maskedinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.tagsinput.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.mousewheel.js")"></script>
+    <script src="@routes.Assets.at("js/select2.min.js")"></script>
+    <script src="@routes.Assets.at("js/dropzone.min.js")"></script>
+    <script src="@routes.Assets.at("js/colorpicker.js")"></script>
+
+    <script src="@routes.Assets.at("js/jquery.validate.min.js")"></script>
+    <script src="@routes.Assets.at("js/jquery.hDialog.js")"></script>
+
+    <!-- 引入 ECharts 文件 -->
+    <script src="@routes.Assets.at("js/eachars3.0/echarts.min.js")"></script>
+    <script src="@routes.Assets.at("js/eachars3.0/map/china.js")"></script>
+    <script src="@routes.Assets.at("js/eachars3.0/config.js")"></script>
+
+    <script src="@routes.Assets.at("js/commonFunction/estirmateReport.js")"></script>
+}

@@ -1,0 +1,77 @@
+/**
+ * Created by clock on 2017/6/28.
+ */
+
+.row {
+    margin-top : -10px;
+}
+
+.dataTable thead > tr > th {
+    background-color: #1CAF9A;
+}
+
+.btn-primary {
+    background-color: #1CAF9A;
+    border-color: #1CAF9A;
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    background-color: #1CAF9A;
+    border-color: #1CAF9A;
+    color: #fff;
+}
+
+.btn {
+    border-radius: 3px;
+    line-height: 21px;
+    padding: 5px 30px;
+    transition: all 0.2s ease-out 0s;
+}
+
+.col-sm-3 {
+    width: 35%;
+}
+
+.col-sm-9 {
+    width: 55%;
+}
+
+.laydate_body .laydate_top {
+    padding: 0px;
+}
+
+.laydate_body .laydate_bottom {
+    height: 35px;
+}
+
+.laydate_body .laydate_y .laydate_yms {
+    width: 126px;
+}
+
+.btn-success {
+    background-color: #1caf9a;
+    border-color: #17a08c;
+}
+
+.btn-success:hover, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+    background-color: #17a08c;
+    border-color: #119380;
+}
+
+a {
+    color: #1CAF9A;
+}
+
+a:hover, a:focus {
+    color: #17a08c;
+    text-decoration: underline;
+}
+
+.laydate-icon, .laydate-icon-default, .laydate-icon-danlan, .laydate-icon-dahong, .laydate-icon-molv {
+    width: 100%;
+}

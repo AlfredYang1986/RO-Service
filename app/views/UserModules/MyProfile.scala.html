@@ -1,0 +1,83 @@
+@(user_name : String)
+<div id="myprofile-form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+        <h4 class="modal-title">我的资料</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <!--<div class="col-sm-3">
+                    <img src="" class="thumbnail img-responsive" alt="" />
+                    <div class="mb30"></div>
+                  </div>-->
+                  <div class="col-sm-12">
+                    <!--<div class="profile-header">
+                      <h2 class="profile-name"></h2>
+                      <div class="profile-location"><i class="fa fa-map-marker"></i> 地址：北京市朝阳区国航大厦</div>
+                      <div class="mb20"></div>
+                    </div>-->
+                    <div class="panel panel-default">
+                      <div class="panel-body editable-list-group">
+                        <form id="user_form" action="" class="form-horizontal">
+
+                          <!--<input type="hidden" id="user_id" name="user_id"/>-->
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-5 text-center">用户名</div>
+                            <div class="col-sm-7 text-center"><a data-type="text" style="text-decoration:none;cursor: pointer;">@user_name</a></div>
+                          </div>
+
+                          <!--<div class="row editable-list-item">
+                            <div class="col-sm-3">密码</div>
+                            <div class="col-sm-9"><a id="pwd" name="pwd" data-type="text"></a></div>
+                          </div>
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-3">昵称</div>
+                            <div class="col-sm-9"><a id="screen_name" name="screen_name" data-type="text"></a></div>
+                          </div>
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-3">手机号码</div>
+                            <div class="col-sm-9"><a id="phoneNo" name="phoneNo" data-type="text"></a></div>
+                          </div>
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-3">电子邮箱</div>
+                            <div class="col-sm-9"><a id="email" name="email" data-type="text"></a></div>
+                          </div>-->
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-5 text-center">公司名称</div>
+                            <div class="col-sm-7 text-center"><a id="company" data-type="text" style="text-decoration:none;cursor: pointer;"></a></div>
+                          </div>
+
+                          <div class="row editable-list-item">
+                            <div class="col-sm-5 text-center">角色名称</div>
+                            <div class="col-sm-7 text-center"><a id="department" data-type="text" style="text-decoration:none;cursor: pointer;"></a></div>
+                          </div>
+
+                          <!--<div class="row editable-list-item">
+                            <div class="col-sm-3">创建日期</div>
+                            <div class="col-sm-3"><a id="date" data-type="text"></a></div>
+                          </div>-->
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

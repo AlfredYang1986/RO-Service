@@ -1,0 +1,57 @@
+@(level: String, page_type: String)
+<!-- Highly Modular -->
+<div class="leftpanel">
+    <div class="logopanel">
+        <h1><span>PET</span></h1>
+    </div>
+    <div class="leftpanelinner">
+        <h5 class="sidebartitle">导航栏</h5>
+        <ul class="nav nav-pills nav-stacked nav-bracket">
+            <li class="@if(page_type == "BusinessAnalysis") {active} else {}"><a href="/astellas/businessAnalysis"><i class="fa fa-home"></i> <span>
+                业务分析</span></a></li>
+            @if(level.toString.equals("2")) {
+                <li class="nav-parent @if(page_type != "BusinessAnalysis") {nav-active active} else {}"><a href=""><i class="fa fa-globe"></i> <span>
+                    优化预测</span></a>
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "BudgetOptimization") {active} else {}"><a href="/astellas/budgetOptimization"><i class="fa fa-laptop"></i>
+                            预算优化</a></li>
+                        <li class="@if(page_type == "ResultsReport") {active} else {}"><a href="/astellas/resultsReport"><i class="fa fa-signal"></i>
+                            结果报告</a></li>
+                        <li class="@if(page_type == "ResultsComparison") {active} else {}"><a href="/astellas/resultsComparison"><i class="fa fa-bar-chart-o"></i>
+                            结果比较</a></li>
+                    </ul>
+                </li>
+            } else {
+                <li class="nav-parent @if(page_type != "BusinessAnalysis") {nav-active active} else {}"><a href="#"><i class="fa fa-globe"></i> <span>
+                    后台管理</span></a>
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "UserManage") {active} else {}"><a href="/astellas/userManage"><i class="fa fa-users"></i>
+                            用户管理</a></li>
+                    </ul>
+                    @if(level.toString.equals("0")){
+                        <ul class="children" style="display: block;">
+                            <li class="@if(page_type == "CompanyManage") {active} else {}"><a href="/astellas/companyManage"><i class="fa fa-sitemap"></i>
+                                公司管理</a></li>
+                        </ul>
+                    }
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "DepartmentManage") {active} else {}"><a href="/astellas/departmentManage"><i class="fa fa-language"></i>
+                            部门管理</a></li>
+                    </ul>
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "ProductManage") {active} else {}"><a href="/astellas/productManage"><i class="fa fa-pied-piper-square"></i>
+                            产品管理</a></li>
+                    </ul>
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "ChannelManage") {active} else {}"><a href="/astellas/channelManage"><i class="fa fa-ticket"></i>
+                            渠道管理</a></li>
+                    </ul>
+                    <ul class="children" style="display: block;">
+                        <li class="@if(page_type == "DataManage") {active} else {}"><a href="/astellas/dataManage"><i class="fa fa-database"></i>
+                            数据管理</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

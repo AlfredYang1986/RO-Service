@@ -1,0 +1,64 @@
+<div id="usermanage-form" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal_title">编辑</h4>
+      </div>
+      <div class="modal-body">
+        <form id="user_form" role="form">
+          <input id="user_id" name="user_id" type="text" class="form-control hidden"/>
+          <input id="screen_photo" name="screen_photo" type="text" class="form-control hidden"/>
+          <input id="date" name="date" type="text" class="form-control hidden"/>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>公司</label>
+              <select id="company" name="company" onchange="changeCompany('')" class="form-control input-sm mb15">
+
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>部门</label>
+              <select id="department" name="department" class="form-control input-sm mb15">
+
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label class="col-sm-12 control-label">用户名 <span class="asterisk">*</span></label>
+              <input id="user_name" name="user_name" type="text" placeholder="Type user name..." class="form-control"/>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="col-sm-12 control-label">密码 <span class="asterisk">*</span></label>
+              <input id="pwd" name="pwd" type="password" placeholder="Type password..." class="form-control"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>昵称</label>
+              <input id="screen_name" name="screen_name" type="text" placeholder="Type screen name..." class="form-control"/>
+            </div>
+            <div class="form-group col-md-6">
+              <label>手机号码</label>
+              <input id="phoneNo" name="phoneNo" type="text" placeholder="Type phone number..." class="form-control"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>邮箱</label>
+              <input id="email" name="email" type="email" placeholder="Type email..." class="form-control"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="SaveUser()">提交</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

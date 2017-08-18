@@ -1,0 +1,51 @@
+@(level : String)
+<div id="departmentmanage-form" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal_title">编辑</h4>
+      </div>
+      <div class="modal-body">
+        <form id="department_form" role="form">
+          <input id="department_id" name="department_id" type="text" class="form-control hidden"/>
+          <input id="date" name="date" type="text" class="form-control hidden"/>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label>公司</label>
+              <div class="col-sm-12">
+                <select id='company' name="company" class='form-control input-sm mb15'>
+
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="col-sm-12 control-label">部门名称 <span class="asterisk">*</span></label>
+              <input id="department_name" name="department_name" type="text" placeholder="Type department name..." class="form-control"/>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="col-sm-12 control-label">简称 <span class="asterisk">*</span></label>
+              <input id="short_name" name="short_name" type="text" placeholder="Type short name..." class="form-control"/>
+            </div>
+            <div class="form-group col-md-12">
+              <label>是否管理员</label>
+              <div class="col-sm-12">
+                <select id='is_admin' name="is_admin" class='form-control input-sm mb15'>
+                  @if(level.toString.equals("0")){
+                    <option value="0">超级管理员</option>
+                  }
+                  <option value="1">管理员</option>
+                  <option value="2">普通用户</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="SaveDepartment()">提交</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

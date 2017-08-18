@@ -1,0 +1,74 @@
+/**
+ * Created by clock on 2017/7/1.
+ */
+
+.row {
+    margin-top : -10px;
+}
+
+.col-md-6 {
+    width: 100%;
+}
+
+.col-sm-offset-3 {
+    margin-left: 50%;
+}
+
+.dataTable thead > tr > th {
+    background-color: #1CAF9A;
+}
+
+.btn-primary {
+    background-color: #1CAF9A;
+    border-color: #1CAF9A;
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background-color: #1CAF9A;
+    border-color: #1CAF9A;
+    color: #fff;
+}
+
+.form-horizontal .form-group {
+    margin-left: 27px;
+    margin-right: 25px;
+}
+
+.btn {
+    border-radius: 3px;
+    line-height: 21px;
+    padding: 5px 30px;
+    transition: all 0.2s ease-out 0s;
+}
+
+.input-group .form-control {
+    width: 50%;
+}
+
+.col-sm-3 {
+    width: 38%;
+}
+
+.col-sm-9 {
+    width: 55%;
+}
+
+.btn-success {
+    background-color: #1caf9a;
+    border-color: #17a08c;
+}
+
+.btn-success:hover, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+    background-color: #17a08c;
+    border-color: #119380;
+}
+
+a {
+    color: #1CAF9A;
+}
+
+a:hover, a:focus {
+    color: #17a08c;
+    text-decoration: underline;
+}

@@ -1,0 +1,52 @@
+<div class="pageheader">
+    <h2><i class="fa fa-laptop"></i> 优化预测 <span>预算页面</span></h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">你在这里:</span>
+        <ol class="breadcrumb">
+            <li><a href="/astellas/businessAnalysis"></a>优化预测</li>
+            <li class="active">预算页面</li>
+        </ol>
+    </div>
+</div>
+<div class="contentpanel">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-btns">
+                        <a href="" class="panel-close">&times;</a>
+                        <a href="" class="minimize">&minus;</a>
+                    </div>
+                    <h4 class="panel-title">优化预测</h4>
+                </div>
+                <div class="panel-body panel-body-nopadding">
+                    <div id="progressWizard" class="basic-wizard">
+                        <div id="disabledTabWizard">
+                            <ul class="nav nav-pills nav-justified">
+                                <li><a href="#dtab1" data-toggle="tab"><span>Step 1:</span> 产品预算设置</a></li>
+                                <li><a href="#dtab2" data-toggle="tab"><span>Step 2:</span> 产品优化设置</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="tab-pane" id="dtab1">
+                                @BudgetOptimizationModules.ProductBudgetTable()
+                                @BudgetOptimizationModules.ProductBudgetModal()
+                            </div>
+                            <div class="tab-pane" id="dtab2">
+                                @BudgetOptimizationModules.ProductOptimizatTable()
+                                @BudgetOptimizationModules.ProductOptimizatModal()
+                            </div>
+                            <ul class="pager wizard">
+                                <li class="previous"><a href="javascript:void(0)">上一步</a></li>
+                                <li class="next"><a href="javascript:void(0)">下一步</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
