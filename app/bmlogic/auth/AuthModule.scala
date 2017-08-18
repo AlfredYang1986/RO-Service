@@ -13,6 +13,8 @@ import bmmessages.MessageDefines
 import bmmessages.CommonModules
 import bmpattern.ModuleTrait
 import bmutil.errorcode.ErrorCode
+import bmlogic.common.AuthEnum._
+import bmlogic.common.page.Page.{Page, SKIP, TAKE}
 
 import scala.collection.immutable.Map
 import com.mongodb.casbah.Imports._
@@ -20,65 +22,150 @@ import com.mongodb.casbah.Imports._
 object AuthModule extends ModuleTrait with AuthData {
 
 	def dispatchMsg(msg : MessageDefines)(pr : Option[Map[String, JsValue]])(implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = msg match {
-        case msg_AuthLogin(data) => authLogin(data)
-        case msg_AuthQuery(data) => queryUser(data)
+        case msg_AuthPushUser(data) => authPushUser(data)
+        case msg_AuthUpdateUser(data) => authUpdateUser(data)(pr)
+        case msg_AuthDropUser(data) => authDropUser(data)(pr)
+
+		case msg_AuthWithPassword(data) => authWithPassword(data)
+        case msg_QueryUser(data) => queryUser(data)(pr)
+        case msg_QueryMultipleUser(data) => queryMultipleUser(data)(pr)
+        case msg_PageUser(data) => pageUser(data)(pr)
+
         case msg_AuthTokenParser(data) => authTokenParser(data)
 
+        case msg_CheckAuthTokenTest(data) => checkAuthTokenTest(data)(pr)
         case msg_CheckTokenExpire(data) => checkAuthTokenExpire(data)(pr)
+        case msg_CheckSuperAdministrator(data) => checkSuperAdmin(data)(pr)
+        case msg_CheckAdministrator(data) => checkAdmin(data)(pr)
+
         case msg_GenerateToken() => generateToken(pr)
 
 		case _ => ???
 	}
 
-    def authLogin(data : JsValue)(implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+    def authPushUser(data : JsValue)(implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
         try {
             val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
             val att = cm.modules.get.get("att").map (x => x.asInstanceOf[AuthTokenTrait]).getOrElse(throw new Exception("no encrypt impl"))
 
-            val auth_phone = (data \ "phone").asOpt[String].map (x => x).getOrElse("")
-            val third_uid = (data \ "third" \ "provide_uid").asOpt[String].map (x => x).getOrElse("")
-
-            if (auth_phone.isEmpty && third_uid.isEmpty) throw new Exception("user push error")
-
             val date = new Date().getTime
             val o : DBObject = data
-
-            val seed = auth_phone + third_uid + Sercurity.getTimeSpanWithMillSeconds
-
-            o += "user_id" -> Sercurity.md5Hash(seed)
+            val user_name = (data \ "user_name").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+            val pwd = (data \ "pwd").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+            o += "user_id" -> Sercurity.md5Hash(user_name + pwd + Sercurity.getTimeSpanWithMillSeconds)
             o += "date" -> date.asInstanceOf[Number]
+            db.insertObject(o, "users", "user_name")
 
-            val only_condition = $or(DBObject("wechat.uid" -> third_uid), DBObject("auth_phone" -> auth_phone))
+            val reVal = toJson(o - "user_id" - "pwd" - "phoneNo" - "email" - "date")
 
-            db.queryObject(only_condition, "users") match {
-                case None => {
-                    db.insertObject(o, "users", "user_id")
-//                    val result = toJson(o - "date" + ("expire_in" -> toJson(date + 60 * 60 * 1000 * 24))) // token 默认一天过期
-//                    val auth_token = att.encrypt2Token(toJson(result))
-                    val reVal = toJson(o - "date")
-                    (Some(Map("user" -> reVal)), None)
-                }
-                case Some(one) => {
-                    // throw new Exception("user already exist")
-                    val reVal = toJson(one - "date")
-                    (Some(Map("user" -> reVal)), None)
-                }
-            }
+            (Some(Map("method" -> toJson("authPushUser"), "user" -> reVal)),None)
         } catch {
             case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
         }
     }
 
-    def queryUser(data : JsValue)(implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+    def authUpdateUser(data : JsValue)
+                      (pr : Option[Map[String, JsValue]])
+                      (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+        try{
+            val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
+
+            val o : DBObject = data
+
+            o += "user_id" -> (data \ "user_id").get.asOpt[String].get
+            o += "date" -> (data \ "date").get.asOpt[String].get.toLong.asInstanceOf[Number]
+            db.updateObject(o, "users", "user_id")
+
+            (Some(Map("method" -> toJson("authUpdateUser"), "company" -> toJson(o - "tmp"))),None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def authDropUser(data : JsValue)
+                    (pr : Option[Map[String, JsValue]])
+                   (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+
         try {
             val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
 
-            val c = conditions(data)
-            db.queryObject(c, "users") match {
-                case None => (Some(Map("user" -> toJson(""))), None)
-                case Some(one) => (Some(Map("user" -> toJson(one - "date"))), None)
-            }
+            val o = condition(data)
 
+            db.deleteObject(o, "users", "user_id")
+
+            (Some(Map("method" -> toJson("authDropUser"), "result" -> toJson("tmp"))), None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def authWithPassword(data : JsValue)(implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+		try {
+			val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
+
+			val user_name = (data \ "user_name").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+			val pwd = (data \ "pwd").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+
+			val result = db.queryObject($and("user_name" -> user_name, "pwd" -> pwd), "users")
+            val reVal = toJson(result.get - "user_id" - "pwd" - "phoneNo" - "email" - "date")
+
+            if (result.isEmpty)
+                throw new Exception("no user found")
+			else
+                (Some(Map("method" -> toJson("authWithPassword"), "user" -> reVal)), None)
+		} catch {
+			case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+		}
+    }
+
+    def queryUser(data : JsValue)
+                 (pr : Option[Map[String, JsValue]])
+                 (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+        try {
+            val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
+
+            val o = condition(data)
+            val result = db.queryObject(o, "users")
+
+            (Some(Map("method" -> toJson("queryUser"), "user" -> toJson(result), "company" -> toJson(pr.get.get("company")))),None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def queryMultipleUser(data : JsValue)
+                         (pr : Option[Map[String, JsValue]])
+                         (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+        try {
+            val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
+
+            val o : DBObject = condition(data)
+            val result = db.queryMultipleObject(o, "users", skip = 0, take = 1000)
+
+            (Some(Map("method" -> toJson("queryMultipleUser"), "result" -> toJson(result))),None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def pageUser(data : JsValue)
+                         (pr : Option[Map[String, JsValue]])
+                         (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+        try {
+            val db = cm.modules.get.get("db").map (x => x.asInstanceOf[DBTrait]).getOrElse(throw new Exception("no db connection"))
+
+            val currentPage = (data \ "currentPage").asOpt[Int].map (x => x).getOrElse(1)
+
+            val o = condition(data)
+            lazy val count = db.queryCount(condition = o, db_name = "users").get
+            val result = db.queryMultipleObject(condition = o, db_name = "users", skip = SKIP(currentPage), take = TAKE)
+
+            (Some(Map(
+                "method" -> toJson("pageUser"),
+                "result" -> toJson(result),
+                "page" -> Page(currentPage,count),
+                "count" -> toJson(count)
+            )),None)
         } catch {
             case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
         }
@@ -88,13 +175,20 @@ object AuthModule extends ModuleTrait with AuthData {
         try {
             val att = cm.modules.get.get("att").map (x => x.asInstanceOf[AuthTokenTrait]).getOrElse(throw new Exception("no encrypt impl"))
 
-            val auth_token = (data \ "token").asOpt[String].map (x => x).getOrElse(throw new Exception("input error"))
+            val auth_token = (data \ "token").asOpt[String].map (x => x).getOrElse(throw new Exception("token input error"))
             val auth = att.decrypt2JsValue(auth_token)
-            (Some(Map("auth" -> auth)), None)
+
+            (Some(Map("method" -> toJson("authTokenParser"), "auth" -> toJson(auth))), None)
 
         } catch {
             case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
         }
+    }
+
+    def checkAuthTokenTest(data : JsValue)
+                          (pr : Option[Map[String, JsValue]])
+                          (implicit cm : CommonModules): (Option[Map[String, JsValue]], Option[JsValue]) = {
+        (pr, None)
     }
 
     def checkAuthTokenExpire(data : JsValue)
@@ -104,9 +198,37 @@ object AuthModule extends ModuleTrait with AuthData {
         try {
             val auth = pr.map (x => x.get("auth").get).getOrElse(throw new Exception("token parse error"))
             val expire_in = (auth \ "expire_in").asOpt[Long].map (x => x).getOrElse(throw new Exception("token parse error"))
-
             if (new Date().getTime > expire_in) throw new Exception("token expired")
             else (pr, None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def checkSuperAdmin(value: JsValue)
+                       (pr : Option[Map[String, JsValue]])
+                       (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+
+        try {
+            val auth = pr.map (x => x.get("auth").get).getOrElse(throw new Exception("token parse error"))
+
+            //println(auth) What are you doing?
+
+            (pr, None)
+        } catch {
+            case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
+        }
+    }
+
+    def checkAdmin(value: JsValue)
+                  (pr : Option[Map[String, JsValue]])
+                  (implicit cm : CommonModules) : (Option[Map[String, JsValue]], Option[JsValue]) = {
+
+        try {
+
+            val auth = pr.map (x => x.get("auth").get).getOrElse(throw new Exception("token parse error"))
+
+            (pr, None)
         } catch {
             case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))
         }
@@ -119,12 +241,24 @@ object AuthModule extends ModuleTrait with AuthData {
             val att = cm.modules.get.get("att").map (x => x.asInstanceOf[AuthTokenTrait]).getOrElse(throw new Exception("no encrypt impl"))
 
             val user = pr.get.get("user").get
-            val date = new Date().getTime
-            val result = toJson(user.as[JsObject].value.toMap + ("expire_in" -> toJson(date + 60 * 60 * 1000 * 24))) // token 默认一天过期
-            val auth_token = att.encrypt2Token(result)
-            val tt = att.decrypt2JsValue(auth_token)
+            val channel = pr.get.get("channel").get
+            val department = pr.get.get("department").get
 
-            (Some(Map("user" -> user, "auth_token" -> toJson(auth_token))), None)
+            val is_admin = (department \ "is_admin").asOpt[String].map(x => x).getOrElse(throw new Exception("user department error"))
+
+            /**
+              * generate token
+              */
+            def tokonCode: (JsValue, String) = {
+                var usm = user.as[JsObject].value.toMap
+                usm += "channel" -> channel
+                usm += "is_admin" -> toJson(StringToInt(is_admin))
+                usm += ("expire_in" -> toJson(new Date().getTime + 60 * 60 * 1000 * 24))
+                (toJson(usm - "channel"), att.encrypt2Token(toJson(usm)))
+            }
+            val (u, t) = tokonCode
+
+            (Some(Map("method" -> toJson("generateToken"), "user" -> u, "token" -> toJson(t))), None)
 
         } catch {
             case ex : Exception => (None, Some(ErrorCode.errorToJson(ex.getMessage)))

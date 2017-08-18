@@ -9,53 +9,46 @@ import play.api.libs.json.Json.toJson
   */
 trait AuthData {
 
-    def conditions(data : JsValue) : DBObject = {
+    val condition : JsValue => DBObject = { js =>
         val builder = MongoDBObject.newBuilder
 
-        (data \ "phone").asOpt[String].map (x => builder += "auth_phone" -> x).getOrElse(Unit)
-        (data \ "user_id").asOpt[String].map (x => builder += "user_id" -> x).getOrElse(Unit)
-        (data \ "screen_name").asOpt[String].map (x => builder += "screen_name" -> x).getOrElse(Unit)
+        (js \ "user_id").asOpt[String].map (x => builder += "user_id" -> x).getOrElse(Unit)
+        (js \ "company").asOpt[String].map (x => builder += "company" -> x).getOrElse(Unit)
+        (js \ "department").asOpt[String].map (x => builder += "department" -> x).getOrElse(Unit)
 
-        builder.result
+        builder.result()
     }
-
+    
     implicit val m2d : JsValue => DBObject = { js =>
-        val builder = MongoDBObject.newBuilder
+        val build = MongoDBObject.newBuilder
+        val user_name = (js \ "user_name").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+        val pwd = (js \ "pwd").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+        build += "user_name" -> user_name
+        build += "pwd" -> pwd
 
-        builder += "screen_name" -> (js \ "screen_name").asOpt[String].map (x => x).getOrElse("")
-        builder += "screen_photo" -> (js \ "screen_photo").asOpt[String].map (x => x).getOrElse("")
+        build += "screen_name" -> (js \ "screen_name").asOpt[String].map (x => x).getOrElse("")
+        build += "screen_photo" -> (js \ "screen_photo").asOpt[String].map (x => x).getOrElse("")
+        build += "phoneNo" -> (js \ "phoneNo").asOpt[String].map (x => x).getOrElse("")
+        build += "email" -> (js \ "email").asOpt[String].map (x => x).getOrElse("")
 
-        (js \ "phone").asOpt[String].map { x =>
-            builder += "auth_phone" -> x
-        }.getOrElse(Unit)
+        build += "company" -> (js \ "company").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
+        build += "department" -> (js \ "department").asOpt[String].map (x => x).getOrElse(throw new Exception("users input js error"))
 
-        (js \ "third").asOpt[JsValue].map { x =>
-            val name = (x \ "provide_name").asOpt[String].map (x => x).getOrElse(throw new Exception("user push error"))
-
-            val third_builder = MongoDBObject.newBuilder
-            third_builder += "uid" -> (x \ "provide_uid").asOpt[String].map (x => x).getOrElse(throw new Exception("user push error"))
-            third_builder += "token" -> (x \ "provide_token").asOpt[String].map (x => x).getOrElse(throw new Exception("user push error"))
-
-            builder += "screen_name" -> (x \ "provide_screen_name").asOpt[String].map (x => x).getOrElse(throw new Exception("user push error"))
-            builder += "screen_photo" -> (x \ "provide_screen_photo").asOpt[String].map (x => x).getOrElse(throw new Exception("user push error"))
-            builder += name -> third_builder.result
-        }
-
-        builder.result
+        build.result
     }
 
     implicit val d2m : DBObject => Map[String, JsValue] = { obj =>
-        val spm = obj.getAs[MongoDBObject]("service_provider").map { x =>
-            x.getAs[String]("social_id").map (y => 1).getOrElse(0)
-        }.getOrElse(0)
-        val has_auth_phone = obj.getAs[String]("auth_phone").map (x => 1).getOrElse(0)
-
         Map(
-            "user_id" -> toJson(obj.getAs[String]("user_id").map (x => x).getOrElse(throw new Exception("db prase error"))),
-            "screen_name" -> toJson(obj.getAs[String]("screen_name").map (x => x).getOrElse(throw new Exception("db prase error"))),
-            "screen_photo" -> toJson(obj.getAs[String]("screen_photo").map (x => x).getOrElse(throw new Exception("db prase error"))),
-            "is_service_provider" -> toJson(spm),
-            "has_auth_phone" -> toJson(has_auth_phone)
+            "user_id" -> toJson(obj.getAs[String]("user_id").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "user_name" -> toJson(obj.getAs[String]("user_name").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "pwd" -> toJson(obj.getAs[String]("pwd").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "phoneNo" -> toJson(obj.getAs[String]("phoneNo").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "email" -> toJson(obj.getAs[String]("email").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "screen_name" -> toJson(obj.getAs[String]("screen_name").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "screen_photo" -> toJson(obj.getAs[String]("screen_photo").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "company" -> toJson(obj.getAs[String]("company").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "department" -> toJson(obj.getAs[String]("department").map (x => x).getOrElse(throw new Exception("users output error"))),
+            "date" -> toJson(obj.getAs[Long]("date").map (x => x).getOrElse(throw new Exception("users output error")))
         )
     }
 }
