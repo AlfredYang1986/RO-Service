@@ -23,105 +23,27 @@
               <h3 class="panel-title">资源优化</h3>
             </div>
             <div class="panel-body">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                  <table id="table" class="table table-success mb30">
-                    <form class="form">
-                      <div class="row form-group">
-                        <div class="col-xs-3 form-group">
-                          <label>医院终端</label>
-                          <select class="form-control">
-                            <option>人民医院</option>
-                            <option>协和医院</option>
-                            <option>妇产医院</option>
-                            <option>肿瘤医院</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="table-responsive">
-                          <table class="table table-success mb30">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>产品</th>
-                                <th>市场潜力</th>
-                                <th>目前销量</th>
-                                <th>费用分配</th>
-                                <th>代表</th>
-                                <th>时间分配</th>
-                                <th>时间分配给A级客户</th>
-                                <th>时间分配给B级客户</th>
-                                <th>时间分配给C级客户</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>A</td>
-                                <td>500,000 </td>
-                                <td>115,000 </td>
-                                <td>5%</td>
-                                <td>代表1</td>
-                                <td>10%</td>
-                                <td>30%</td>
-                                <td>40%</td>
-                                <td>30%</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>B</td>
-                                <td>600,000 </td>
-                                <td>138,000 </td>
-                                <td>5%</td>
-                                <td>代表1</td>
-                                <td>10%</td>
-                                <td>30%</td>
-                                <td>40%</td>
-                                <td>30%</td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>C</td>
-                                <td>70,000 </td>
-                                <td>16,100 </td>
-                                <td>5%</td>
-                                <td>代表1</td>
-                                <td>10%</td>
-                                <td>30%</td>
-                                <td>40%</td>
-                                <td>30%</td>
-                              </tr>
-                              <tr>
-                                <td>4</td>
-                                <td>D</td>
-                                <td>80,000,000 </td>
-                                <td>18,400,000 </td>
-                                <td>5%</td>
-                                <td>代表1</td>
-                                <td>10%</td>
-                                <td>30%</td>
-                                <td>40%</td>
-                                <td>30%</td>
-                              </tr>
-                              <tr>
-                                <td>5</td>
-                                <td>E</td>
-                                <td>9,000,000 </td>
-                                <td>2,070,000 </td>
-                                <td>5%</td>
-                                <td>代表1</td>
-                                <td>10%</td>
-                                <td>30%</td>
-                                <td>40%</td>
-                                <td>30%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div><!-- table-responsive -->
-                      </div>
-                    </form>
-                  </table>
+              <div id="progressWizard" class="basic-wizard">
+                <div id="disabledTabWizard">
+                  <ul class="nav nav-pills nav-justified">
+                    <li><a href="#dtab1" data-toggle="tab"><span>Step 1:</span> 管理者行动规划</a></li>
+                    <li><a href="#dtab2" data-toggle="tab"><span>Step 2:</span> 团队行动规划</a></li>
+                  </ul>
+                </div>
+                <div class="tab-content">
+                  <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="tab-pane" id="dtab1">
+                    @ResourceOptimizationModules.ManagerActionPlanning()
+                  </div>
+                  <div class="tab-pane" id="dtab2">
+                    @ResourceOptimizationModules.TeamActionPlanning()
+                  </div>
+                  <ul class="pager wizard">
+                    <li class="previous"><a href="javascript:void(0)">上一步</a></li>
+                    <li class="next"><a href="javascript:void(0)">下一步</a></li>
+                  </ul>
                 </div>
               </div>
             </div>
