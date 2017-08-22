@@ -1,0 +1,51 @@
+{
+  "code": 0
+  ,"msg": ""
+  ,"count": 5
+  ,"data": [{
+    "id": "1"
+    ,"timemanagement": "销售培训"
+    ,"totletimemanagement": "20%"
+    ,"manager": "20%"
+    ,"representative1": "5%"
+    ,"representative2": "5%"
+    ,"representative3": "5%"
+    ,"representative4": "5%"
+  },{
+    "id": "2"
+    ,"timemanagement": "医院协访"
+    ,"totletimemanagement": "20%"
+    ,"manager": "20%"
+    ,"representative1": "5%"
+    ,"representative2": "5%"
+    ,"representative3": "5%"
+    ,"representative4": "5%"
+  },{
+    "id": "3"
+    ,"timemanagement": "团队会议"
+    ,"totletimemanagement": "20%"
+    ,"manager": "20%"
+    ,"representative1": "5%"
+    ,"representative2": "5%"
+    ,"representative3": "5%"
+    ,"representative4": "5%"
+  },{
+    "id": "4"
+    ,"timemanagement": "POA"
+    ,"totletimemanagement": "20%"
+    ,"manager": "20%"
+    ,"representative1": "5%"
+    ,"representative2": "5%"
+    ,"representative3": "5%"
+    ,"representative4": "5%"
+  },{
+    "id": "5"
+    ,"timemanagement": "管理工作"
+    ,"totletimemanagement": "20%"
+    ,"manager": "20%"
+    ,"representative1": "5%"
+    ,"representative2": "5%"
+    ,"representative3": "5%"
+    ,"representative4": "5%"
+  }]
+}
