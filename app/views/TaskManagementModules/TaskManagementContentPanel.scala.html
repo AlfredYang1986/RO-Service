@@ -1,0 +1,52 @@
+@()
+<div class="pageheader">
+  <h2><i class="fa fa-bar-chart-o"></i> 资源优化 <span>任务管理</span></h2>
+  <div class="breadcrumb-wrapper">
+    <span class="label">你在这里:</span>
+    <ol class="breadcrumb">
+      <li><a href="#"></a>资源优化</li>
+      <li class="active">任务管理</li>
+    </ol>
+  </div>
+</div>
+<div class="contentpanel">
+  <div id="content1" class="row">
+    <div class="ibox-content">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <div class="panel-btns">
+                <a href="" class="panel-close">&times;</a>
+                <a href="" class="minimize">&minus;</a>
+              </div>
+              <h3 class="panel-title">任务管理</h3>
+            </div>
+            <div class="panel-body">
+              <div class="demoTable">
+                总时间：
+                <div class="layui-inline">
+                  <input class="layui-input" name="time" id="time" value="100天">
+                </div>
+              </div>
+              <table class="layui-table" lay-data="{height:300, url:'/assets/ro/json/table/ro-task-management.json', page: true}">
+                <thead>
+                  <tr>
+                    <th lay-data="{field:'id', width:80}">#</th>
+                    <th lay-data="{field:'timemanagement', width:150}">时间分配</th>
+                    <th lay-data="{field:'totletimemanagement', width:150, edit: 'text'}">总时间分配比例</th>
+                    <th lay-data="{field:'manager', width:150, edit: 'text'}">管理者</th>
+                    <th lay-data="{field:'representative1', width:150, edit: 'text'}">代表1</th>
+                    <th lay-data="{field:'representative2', width:150, edit: 'text'}">代表2</th>
+                    <th lay-data="{field:'representative3', width:150, edit: 'text'}">代表3</th>
+                    <th lay-data="{field:'representative4', width:150, edit: 'text'}">代表4</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

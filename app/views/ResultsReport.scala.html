@@ -1,0 +1,8 @@
+@(page_type : String)
+@main("结果报告"){
+}{
+  <!-- Highly Modular -->
+  @AppColumnModules.App(page_type)
+}{
+  <script src="@routes.Assets.at("ro/js/ro-results-report.js")"></script>
+}

@@ -24,4 +24,21 @@ class ROController extends Controller{
     def goResourceOptimization = Action { request =>
         requestVerify().verifylogin(request,"goResourceOptimization")
     }
+
+    def goRegionalManagement = Action { request =>
+        requestVerify().verifylogin(request,"goRegionalManagement")
+    }
+
+    def goTaskManagement = Action { request =>
+        requestVerify().verifylogin(request,"goTaskManagement")
+    }
+
+    def goCustomerManagement = Action { request =>
+        requestVerify().verifylogin(request,"goCustomerManagement")
+    }
+
+    def goResultsReport = Action { request =>
+        requestVerify().verifylogin(request,"goResultsReport")
+    }
+
 }

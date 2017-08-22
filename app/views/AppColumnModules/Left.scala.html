@@ -9,10 +9,19 @@
         <ul class="nav nav-pills nav-stacked nav-bracket">
             <li class="@if(page_type == "BusinessIntroduction") {active} else {}"><a href="/ro/businessIntroduction"><i class="fa fa-home"></i> <span>
                 业务介绍</span></a></li>
-            <li class="@if(page_type == "ResourceManagement") {active} else {}"><a href="/ro/resourceManagement"><i class="fa fa-globe"></i> <span>
-                资源管理</span></a></li>
-            <li class="@if(page_type == "ResourceOptimization") {active} else {}"><a href="/ro/resourceOptimization"><i class="fa fa-laptop"></i> <span>
-                资源优化</span></a></li>
+            <li class="nav-parent @if(!page_type.equals("BusinessIntroduction") && !page_type.equals("ResultsReport")) {nav-active active} else {}"><a href=""><i class="fa fa-globe"></i> <span>
+                资源优化</span></a>
+                <ul class="children" style="display: block;">
+                    <li class="@if(page_type == "RegionalManagement") {active} else {}"><a href="/ro/regionalManagement"><i class="fa fa-laptop"></i>
+                        区域管理</a></li>
+                    <li class="@if(page_type == "TaskManagement") {active} else {}"><a href="/ro/taskManagement"><i class="fa fa-signal"></i>
+                        任务管理</a></li>
+                    <li class="@if(page_type == "CustomerManagement") {active} else {}"><a href="/ro/customerManagement"><i class="fa fa-bar-chart-o"></i>
+                        客户管理</a></li>
+                </ul>
+            </li>
+            <li class="@if(page_type == "ResultsReport") {active} else {}"><a href="/ro/resultsReport"><i class="fa fa-laptop"></i> <span>
+                结果报告</span></a></li>
         </ul>
     </div>
 </div>

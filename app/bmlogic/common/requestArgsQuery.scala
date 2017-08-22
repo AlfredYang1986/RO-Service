@@ -19,6 +19,18 @@ class requestVerify extends Controller {
 				case "goResourceOptimization" => {
 					Ok(views.html.ResourceOptimization("ResourceOptimization"))
 				}
+				case "goRegionalManagement" => {
+					Ok(views.html.RegionalManagement("RegionalManagement"))
+				}
+				case "goTaskManagement" => {
+					Ok(views.html.TaskManagement("TaskManagement"))
+				}
+				case "goCustomerManagement" => {
+					Ok(views.html.CustomerManagement("CustomerManagement"))
+				}
+				case "goResultsReport" => {
+					Ok(views.html.ResultsReport("ResultsReport"))
+				}
 			}
 		} catch {
 			case _ : Exception => BadRequest("Bad Request for input")

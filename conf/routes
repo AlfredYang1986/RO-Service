@@ -10,5 +10,12 @@ GET     /ro/businessIntroduction                controllers.ROController.goBusin
 GET     /ro/resourceManagement                  controllers.ROController.goResourceManagement
 GET     /ro/resourceOptimization                controllers.ROController.goResourceOptimization
 
+GET     /ro/regionalManagement                  controllers.ROController.goRegionalManagement
+GET     /ro/taskManagement                      controllers.ROController.goTaskManagement
+GET     /ro/customerManagement                  controllers.ROController.goCustomerManagement
+GET     /ro/resultsReport                       controllers.ROController.goResultsReport
+
+POST    /ro/regionalManagement                  controllers.RegionalManagementController.queryMultipleRegionalManagement
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               			controllers.Assets.at(path="/public", file)
