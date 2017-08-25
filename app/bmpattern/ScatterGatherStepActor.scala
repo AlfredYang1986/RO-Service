@@ -1,6 +1,12 @@
 package bmpattern
 
-import akka.actor.{ActorRef, Props}
+
+import bmmessages.MessageRoutes
+import akka.actor.ActorLogging
+import akka.actor.ActorRef
+import akka.actor.Actor
+import akka.actor.Props
+import bmmessages.CommonMessage
 
 object ScatterGatherStepActor {
 	def prop(sga : ActorRef, msr : MessageRoutes) : Props = {
@@ -14,19 +20,19 @@ class ScatterGatherStepActor(sga : ActorRef, msr : MessageRoutes) extends PipeFi
 		module.dispatchMsg(cmd)(rst) match {
 			case (_, Some(err)) => {
 				sga ! ParalleMessageFailed(err)
-				cancelActor					
+				cancelActor
 			}
 			case (Some(r), _) => {
-				rst = Some(r) 
+				rst = Some(r)
 			}
 			case _ => println("never go here")
 		}
 		rstReturn
 	}
-	
+
 	override def rstReturn = tmp match {
 		case Some(_) => { rst match {
-			case Some(r) => 
+			case Some(r) =>
 				msr.lst match {
 					case Nil => {
 						sga ! ParalleMessageSuccess(r)

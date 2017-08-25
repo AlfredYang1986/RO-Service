@@ -2,6 +2,9 @@ package bmpattern
 
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json.toJson
+import bmmessages.CommonMessage
+
+import bmutil.errorcode.ErrorCode
 
 abstract class msg_ResultCommand extends CommonMessage
 

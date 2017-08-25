@@ -1,13 +1,9 @@
-package bmpattern
+package bmmessages
 
 import play.api.libs.json.JsValue
 
 trait MessageDefines
 abstract class CommonMessage extends MessageDefines
-
-//class ParallelMessage extends MessageDefines {
-//	type data_type = List[MessageDefines]
-//}
 
 case class excute(msr : MessageRoutes)
 case class result(rst : JsValue)

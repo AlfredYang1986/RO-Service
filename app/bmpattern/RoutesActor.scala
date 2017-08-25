@@ -1,15 +1,23 @@
 package bmpattern
 
-import akka.actor.{Actor, ActorLogging, ActorRef, Terminated}
+
+import akka.actor.Actor
+import akka.actor.ActorRef
+import akka.actor.ActorLogging
+import akka.actor.Props
+
 import play.api.libs.json.Json.toJson
+
+import bmmessages._
+import akka.actor.Terminated
 
 class RoutesActor extends Actor with ActorLogging {
 	var originSender : ActorRef = null
 	var next : ActorRef = null
 	def receive = {
 		case excute(msr)  => {
-		    implicit val cm = msr.cm
-		    
+			implicit val cm = msr.cm
+
 			originSender = sender
 			msr.lst match {
 				case Nil => originSender ! toJson("error")
@@ -24,7 +32,7 @@ class RoutesActor extends Actor with ActorLogging {
 							next ! head
 						}
 					}
-					
+
 					context.watch(next)
 				}
 			}
@@ -37,14 +45,14 @@ class RoutesActor extends Actor with ActorLogging {
 			originSender ! err
 			cancelActor
 		}
-		case bmpattern.timeout() => {
+		case bmmessages.timeout() => {
 			originSender ! toJson("timeout")
 			cancelActor
 		}
 		case Terminated(actorRef) => println("Actor {} terminated", actorRef)
 		case _ => Unit
- 	}
-	
+	}
+
 	def cancelActor = {
 		context.stop(self)
 	}

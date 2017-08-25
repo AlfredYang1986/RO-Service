@@ -15,7 +15,7 @@ GET     /ro/taskManagement                      controllers.ROController.goTaskM
 GET     /ro/customerManagement                  controllers.ROController.goCustomerManagement
 GET     /ro/resultsReport                       controllers.ROController.goResultsReport
 
-POST    /ro/regionalManagement                  controllers.RegionalManagementController.queryMultipleRegionalManagement
+POST    /regionalManagement/list                controllers.RegionalManagementController.queryMultipleRegionalManagement
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               			controllers.Assets.at(path="/public", file)

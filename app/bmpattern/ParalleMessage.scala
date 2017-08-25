@@ -1,6 +1,8 @@
 package bmpattern
 
+
 import play.api.libs.json.JsValue
+import bmmessages.{CommonMessage, MessageDefines, MessageRoutes}
 
 object ParallelMessage {
 	implicit val f : List[Map[String, JsValue]] => Map[String, JsValue] = lst => {
@@ -10,6 +12,9 @@ object ParallelMessage {
 	}
 }
 
-case class ParallelMessage(msgs : List[MessageRoutes], merge : List[Map[String, JsValue]] => Map[String, JsValue]) extends MessageDefines
+case class ParallelMessage(msgs : List[MessageRoutes],
+						   merge : List[Map[String, JsValue]] =>
+							   Option[Map[String, JsValue]] =>
+								   Map[String, JsValue]) extends MessageDefines
 case class ParalleMessageSuccess(r : Map[String, JsValue]) extends CommonMessage
 case class ParalleMessageFailed(e : JsValue) extends CommonMessage
