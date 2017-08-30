@@ -23,6 +23,7 @@
               <h3 class="panel-title">区域管理</h3>
             </div>
             <div class="panel-body">
+
               <div class="demoTable">
                 总销售目标：
                 <div class="layui-inline">
@@ -33,28 +34,7 @@
                   <input class="layui-input" name="time" id="time" value="200,000">
                 </div>
               </div>
-              <table class="layui-table" lay-data="{height:320, url:'/assets/ro/json/table/ro-regional-management.json', page: true}">
-                <thead>
-                  <tr>
-                    <th lay-data="{field:'id', width:50, align:'center'}" rowspan="2">#</th>
-                    <th lay-data="{field:'hospital', width:150, align:'center'}" rowspan="2">目标医院</th>
-                    <th lay-data="{align:'center'}" colspan="3">销售指标</th>
-                    <th lay-data="{align:'center'}" colspan="3">费用</th>
-                    <th lay-data="{align:'center'}" colspan="3">代表</th>
-                  </tr>
-                  <tr>
-                    <th lay-data="{field:'productA1', width:100, edit: 'text'}">产品A</th>
-                    <th lay-data="{field:'productA2', width:100, edit: 'text'}">产品B</th>
-                    <th lay-data="{field:'productA3', width:100, edit: 'text'}">产品C</th>
-                    <th lay-data="{field:'productB1', width:100, edit: 'text'}">产品A</th>
-                    <th lay-data="{field:'productB2', width:100, edit: 'text'}">产品B</th>
-                    <th lay-data="{field:'productB3', width:100, edit: 'text'}">产品C</th>
-                    <th lay-data="{field:'productC1', width:100, edit: 'text'}">产品A</th>
-                    <th lay-data="{field:'productC2', width:100, edit: 'text'}">产品B</th>
-                    <th lay-data="{field:'productC3', width:100, edit: 'text'}">产品C</th>
-                  </tr>
-                </thead>
-              </table>
+              <table id="rm"></table>
             </div>
           </div>
         </div>
